@@ -1,0 +1,28 @@
+html,
+h1,h2,h3,
+p,
+ul {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    font-size: 10px;
+}
+
+body {
+    max-width: 1440px;
+    margin: 0 auto;
+    font-family: 'Inter', sans-serif;
+}
+
+h1 {
+    font-family: 'Inter', sans-serif;
+    @include text-styling(600, 7.2rem, 105%);
+}
+h2 {
+    @include text-styling(600, 6rem, 125%);
+}
+h3 {
+    @include text-styling(600, 2.4rem, 125%);
+}

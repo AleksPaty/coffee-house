@@ -1,0 +1,17 @@
+$bg-body: #E1D4C9;
+$bg-container: #665F55;
+$bg-backdrop: rgba(64, 63, 61, 0.8);
+$border-light: #C1B6AD;
+$border-dark: #665F55;
+$text-dark: #403F3D;
+$text-light: #E1D4C9;
+$text-accent: #B0907A;
+
+
+$content-width: 1360px;
+
+@mixin text-styling($weight, $size, $line) {
+    font-weight: $weight;
+    font-size: $size;
+    line-height: $line;
+}
