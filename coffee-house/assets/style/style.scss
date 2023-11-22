@@ -2,13 +2,405 @@
 @import "base-root/base.scss";
 
 .global-wrapper {
-    padding: 20px 40px 40px;
+    padding: 20px 0 40px;
     display: flex;
     flex-direction: column;
     gap: 100px;
     background-color: $bg-body;
 }
+.text-accent {
+    font-style: italic;
+    color: $text-accent;
+}
 
 .header {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 40px;
+
+    .nav-wrapper {
+        @include flex-rules(space-between, center, '');
+        @include text-styling(600, 1.6rem, 150%);
+
+        .underline-hover {
+            position: absolute;
+            left: 50%;
+            width: 0;
+            border-bottom: 2px solid $text-dark;
+            transition: all 0.5s;
+        }
+
+        .logo {
+            width: 100px;
+            height: 60px;
+        }
+        .coffee-menu {
+            position: relative;
+            display: block;
+            width: 72px;
+            text-decoration: none;
+            color: $text-dark;
+
+            &:hover > {
+                .underline-hover {
+                    left: 0;
+                    width: 100%;
+                }
+            }
+        }
+
+        .header-menu {
+            &__list {
+                display: flex;
+                gap: 40px;
+                list-style: none;
+            }
+
+            &__item {
+                position: relative;
+
+                a {
+                    display: block;
+                    width: max-content;
+                    text-decoration: none;
+                    color: $text-dark;
+                }
+                
+                &:hover > {
+                    .underline-hover {
+                        left: 0;
+                        width: 100%;
+                    }
+                }
+            }
+
+            &__item_shadow {
+                a {
+                    text-shadow: 0 4px 4px rgba($color: #000000, $alpha: 0.2);
+                }
+            }
+        }
+    }
+
+    .header-layout {
+        max-width: 100%;
+        padding: 100px;
+        border-radius: 40px;
+        background: url("../image/header-block-layout.jpg"), lightgray 50% / cover no-repeat;
+
+        &__promo {
+            display: flex;
+            max-width: 530px;
+            height: 444px;
+            flex-direction: column;
+            gap: 40px;
+            color: $text-light;
+        }
+
+        &__btn {
+            position: relative;
+            @include button-size(200px, 64px, 100px);
+            border: none;
+            @include text-styling(600, 1.6rem, 150%);
+            background-color: $bg-body;
+            cursor: pointer;
+
+            .btn-title {
+                position: relative;
+                left: 0;
+                transition: all ease-in-out 0.5s;
+            }
+            .coffee-svg {
+                position: absolute;
+                right: 64px;
+                opacity: 0;
+                transition: opacity ease-in-out 0.5s;
+            }
+            &:hover > {
+                .btn-title {
+                    left: -14px;
+                }
+                .coffee-svg {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+    padding: 0 40px;
+}
+.favorite-coffee {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    text-align: center;
+    color: $text-dark;
+
+    .coffee-slider {
+        display: grid;
+        grid-template-columns: 60px auto 60px;
+        grid-template-rows: max-content auto;
+        gap: 40px;
+        align-items: center;
+
+        &__left-btn,
+        &__right-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 100px;
+            border: 1px solid $border-dark;
+            transition: background-color 1s;
+
+            svg {
+                stroke: $text-dark;
+                transition: color 1s;
+            }
+            &:hover {
+                background-color: $bg-container;
+                svg {
+                    stroke: $text-light;
+                }
+            }
+        }
+        &__controls {
+            display: flex;
+            justify-content: space-between;
+            width: 144px;
+            height: 4px;
+            margin: 0 auto;
+            grid-column-start: 2;
+        }
+        &__line {
+            width: 40px;
+            border-radius: 100px;
+            background-color: $border-light;
+        }
+        &__line_active {
+            background-color: $border-dark;
+        }
+
+        &__window {
+            max-width: 1152px;
+            overflow: hidden;
+
+            .row-items {
+                display: flex;
+                width: 100% * 3;
+
+                &__card {
+                    width: 1152px;
+
+                    .card-content {
+                        max-width: 480px;
+                        margin: 0 auto;
+
+                        &__text {
+                            display: flex;
+                            margin-top: 20px;
+                            flex-direction: column;
+                            gap: 16px;
+                        }
+                        &__decription {
+                            @include text-styling(400, 1.6rem, 150%);
+                        }
+                        &__price {
+                            @include text-styling(600, 2.4rem, 125%);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.about {
+    &__header {
+        margin-bottom: 40px;
+        letter-spacing: -0.1px;
+    }
     
+    .image-galery {
+        display: flex;
+        width: 100%;
+        gap: 40px;
+
+        &__coll {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            max-width: calc(100% / 2 - 20px);
+            max-height: 1060px;
+        }
+
+        &__image {
+            @include flex-rules(center, center, '');
+            overflow: hidden;
+            border-radius: 20px;
+
+            &:hover > {
+                img {
+                    transform: scale(0.9);
+                }
+            }
+            &_img1 {
+                height: 590px;
+                flex-shrink: 0;
+            }
+            &_img3 {
+                height: 430px;
+                flex-shrink: 0;
+            }
+
+            img {
+                transition: transform 0.8s;
+            }
+        }
+    }
+}
+
+.mobile-app {
+    @include flex-rules(space-between, center, '');
+
+    &__offer {
+        @include flex-rules('', '', column);
+        gap: 40px;
+        max-width: 630px;
+
+    }
+    .btn-links-app {
+        display: flex;
+        gap: 20px;
+
+        .btn-link-app {
+            @include flex-rules('', center, '');
+            @include button-size(200px, 64px, 100px);
+            gap: 8px;
+            padding: 12px 20px;
+            background-color: $bg-body;
+            border: 1px solid $border-dark;
+            color: $text-dark;
+            cursor: pointer;
+            transition: background-color 1s;
+
+            svg {
+                fill: $text-dark;
+                transition: fill 1s;
+            }
+            &__text {
+                @include flex-rules('', flex-start, column);
+                gap: 2px;
+                max-width: 93px;
+
+                span:first-child {
+                    @include text-styling(600, 1rem, 140%)
+                }
+                span:last-child {
+                    @include text-styling(600, 1.6rem, 150%)
+                }
+            }
+
+            &:hover {
+                background-color: $bg-container;
+                color: $text-light;
+
+                svg {
+                    fill: $text-light;
+                }
+            }
+        }
+    }
+    &__image {
+        max-height: 630px;
+        img {
+            width: 100%;
+        }
+    }
+}
+
+.footer {
+    padding: 0 40px;
+
+    .footer-wrapper {
+        @include flex-rules('', center, '');
+        gap: 8.5%;
+        padding: 100px;
+        border-radius: 40px;
+        background-color: $bg-container;
+    }
+    
+    .footer-offer {
+        max-width: 530px;
+        color: $text-light;
+
+        &__socials {
+            display: flex;
+            margin-top: 40px;
+            gap: 12px;
+        }
+        &__social-link {
+            display: block;
+            width: 60px;
+            height: 60px;
+            padding: 17px;
+            border-radius: 50%;
+            border: 1px solid $border-light;
+            box-sizing: border-box;
+            transition: background-color 0.6s;
+
+            svg {
+                stroke: $text-light;
+                transition: stroke 0.6s;
+            }
+            &:hover {
+                background-color: $bg-body;
+
+                svg {
+                    stroke: $text-dark;
+                }
+            }
+        }
+    }
+
+    .contacts-info {
+        width: 42.7%;
+        color: $text-light;
+
+        &__contacts {
+            margin-top: 40px;
+            max-width: 262px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        &__item {
+            position: relative;
+            display: block;
+            text-decoration: none;
+            color: $text-light;
+            @include text-styling(600, 1.6rem, 150%);
+
+            svg {
+                margin-right: 4px;
+                vertical-align: text-bottom;
+            }
+            .underline-hover {
+                position: absolute;
+                left: 0;
+                width: 0;
+                border-bottom: 2px solid $text-light;
+                transition: width 0.5s;
+            }
+            &:hover > {
+                .underline-hover {
+                    width: 70%;
+                }
+            }
+        }
+    }
 }

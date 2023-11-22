@@ -15,3 +15,23 @@ $content-width: 1360px;
     font-size: $size;
     line-height: $line;
 }
+
+@mixin button-size($w, $h, $radius) {
+    width: $w;
+    height: $h;
+    border-radius: $radius;
+}
+
+@mixin flex-rules($j-cont, $a-items, $direction) {
+    display: flex;
+    @if $j-cont != '' {
+        justify-content: $j-cont;
+    }
+    @if $a-items != '' {
+        align-items: $a-items;
+    }
+    @if $direction != '' {
+        flex-direction: $direction;
+    }
+    
+}

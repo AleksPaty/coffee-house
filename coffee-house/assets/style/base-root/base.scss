@@ -1,6 +1,6 @@
 html,
 h1,h2,h3,
-p,
+p, div,
 ul {
     margin: 0;
     padding: 0;
@@ -25,4 +25,7 @@ h2 {
 }
 h3 {
     @include text-styling(600, 2.4rem, 125%);
+}
+p {
+    @include text-styling(400, 1.6rem, 150%);
 }
