@@ -1,7 +1,7 @@
 html,
 h1, h2, h3,
 p, div,
-ul {
+ul, a {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -9,6 +9,7 @@ ul {
 
 html {
   font-size: 10px;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -305,6 +306,7 @@ p {
   padding: 12px 20px;
   background-color: #E1D4C9;
   border: 1px solid #665F55;
+  text-decoration: none;
   color: #403F3D;
   cursor: pointer;
   transition: background-color 1s;

@@ -1,13 +1,14 @@
 html,
 h1,h2,h3,
 p, div,
-ul {
+ul, a {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 html {
     font-size: 10px;
+    scroll-behavior: smooth;
 }
 
 body {
