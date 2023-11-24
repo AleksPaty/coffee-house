@@ -129,6 +129,7 @@ p {
 }
 .header .header-layout__btn {
   position: relative;
+  padding: 20px 78px;
   width: 200px;
   height: 64px;
   border-radius: 100px;
@@ -137,6 +138,8 @@ p {
   font-size: 1.6rem;
   line-height: 150%;
   background-color: #E1D4C9;
+  text-decoration: none;
+  color: #403F3D;
   cursor: pointer;
 }
 .header .header-layout__btn .btn-title {
@@ -148,7 +151,7 @@ p {
   position: absolute;
   right: 64px;
   opacity: 0;
-  transition: opacity ease-in-out 0.5s;
+  transition: opacity ease-in-out 0.6s;
 }
 .header .header-layout__btn:hover > .btn-title {
   left: -14px;

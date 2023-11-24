@@ -100,10 +100,13 @@
 
         &__btn {
             position: relative;
+            padding: 20px 78px;
             @include button-size(200px, 64px, 100px);
             border: none;
             @include text-styling(600, 1.6rem, 150%);
             background-color: $bg-body;
+            text-decoration: none;
+            color: $text-dark;
             cursor: pointer;
 
             .btn-title {
@@ -115,7 +118,7 @@
                 position: absolute;
                 right: 64px;
                 opacity: 0;
-                transition: opacity ease-in-out 0.5s;
+                transition: opacity ease-in-out 0.6s;
             }
             &:hover > {
                 .btn-title {
