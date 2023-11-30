@@ -51,8 +51,16 @@
         }
 
         .header-menu {
+            display: flex;
+            width: 100%;
+
+            &__burger {
+                display: none;
+            }
+
             &__list {
                 display: flex;
+                margin: 0 auto;
                 gap: 40px;
                 list-style: none;
             }
@@ -88,6 +96,7 @@
         padding: 100px;
         border-radius: 40px;
         background: url("../image/header-block-layout.jpg"), lightgray 50% / cover no-repeat;
+        background-position-x: 50%;
 
         &__promo {
             display: flex;
@@ -252,7 +261,7 @@
                 }
             }
             &_img1 {
-                height: 590px;
+                max-height: 590px;
                 flex-shrink: 0;
             }
             &_img3 {
@@ -406,5 +415,132 @@
                 }
             }
         }
+    }
+}
+
+//! Media-queries
+
+@media screen and (max-width: 1045px) {
+    .footer {
+        .footer-wrapper {
+            padding: 100px 60px;
+            gap: 5%;
+        }
+    }
+}
+@media (max-width: 945px) {
+    .about {
+        .image-galery {
+            flex-direction: column;
+    
+            &__coll {
+                max-width: 100%;
+
+                .image-galery__image {
+                    border-radius: 20px;
+                    max-height: 590px;
+                    &:hover {
+                        img {
+                            transform: scale(1);
+                        }
+                    }
+                }
+
+                &:first-child  {
+                    .image-galery__image:last-child {
+                        display: none
+                    }
+                }
+                &:last-child {
+                    .image-galery__image:first-child {
+                        display: none
+                    }
+                }
+            }
+        }
+    }
+
+    .footer {
+        .footer-wrapper {
+            @include flex-rules('', flex-start, column);
+            gap: 100px;
+        }
+    }
+}
+
+@media screen and (max-width: 805px) {
+    .header {
+        .nav-wrapper {
+            .coffee-menu {
+                margin-top: 100px;
+            }
+            .header-menu {
+                position: absolute;
+                height: 0px;
+                top: 0;
+                left: 0;
+                flex-direction: column;
+                align-items: center;
+                overflow: hidden;
+                z-index: 1;
+                transition: all 0.6s;
+
+                &-open {
+                    top: 99px;
+                    padding-top: 60px;
+                    height: 924px;
+                    transform: scale(1);
+                    background-color: $bg-body;
+                }
+
+                &__burger {
+                    display: block;
+                    width: 44px;
+                    height: 44px;
+                    border: 1px solid $border-dark;
+                    border-radius: 50%;
+
+                    .burger-icon {
+                        position: relative;
+                        transform: translate(22px - 8px, 14.7px);
+                    }
+                    .burger-icon,
+                    .burger-icon::after {
+                        display: block;
+                        width: 16px;
+                        height: 1.5px;
+                        background-color: $text-dark;
+                    } 
+                    .burger-icon::after {
+                        content: '';
+                        position: absolute;
+                        top: 8px;
+                    }
+                }
+
+                &__list {
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 60px;
+                }
+            }
+        }
+        .header-layout {
+            padding: 100px 60px;
+
+            &__btn {
+                .btn-title {
+                    left: -14px;
+                }
+                .coffee-svg {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    .mobile-app {
+        flex-direction: column;
+        gap: 100px;
     }
 }
