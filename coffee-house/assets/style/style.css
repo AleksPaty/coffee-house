@@ -43,6 +43,24 @@ p {
   line-height: 150%;
 }
 
+.footer .footer-offer__social-link, .favorite-coffee .coffee-slider__left-btn, .favorite-coffee .coffee-slider__right-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+@media (max-width: 628px) {
+  h1 {
+    font-weight: 600;
+    font-size: 4.2rem;
+    line-height: 115%;
+  }
+  h2 {
+    font-weight: 600;
+    font-size: 3.2rem;
+    line-height: 125%;
+  }
+}
 .global-wrapper {
   padding: 20px 0 40px;
   display: flex;
@@ -191,9 +209,6 @@ p {
   align-items: center;
 }
 .favorite-coffee .coffee-slider__left-btn, .favorite-coffee .coffee-slider__right-btn {
-  width: 60px;
-  height: 60px;
-  border-radius: 100px;
   border: 1px solid #665F55;
   transition: background-color 1s;
 }
@@ -380,10 +395,7 @@ p {
 }
 .footer .footer-offer__social-link {
   display: block;
-  width: 60px;
-  height: 60px;
   padding: 17px;
-  border-radius: 50%;
   border: 1px solid #C1B6AD;
   box-sizing: border-box;
   transition: background-color 0.6s;
@@ -464,6 +476,10 @@ p {
     align-items: flex-start;
     flex-direction: column;
     gap: 100px;
+    padding: 100px 60px;
+  }
+  .footer .contacts-info {
+    width: 100%;
   }
 }
 @media screen and (max-width: 805px) {
@@ -478,6 +494,7 @@ p {
     flex-direction: column;
     align-items: center;
     overflow: hidden;
+    z-index: 1;
     transition: all 0.6s;
   }
   .header .nav-wrapper .header-menu-open {
@@ -527,6 +544,40 @@ p {
   .mobile-app {
     flex-direction: column;
     gap: 100px;
+  }
+}
+@media (max-width: 715px) {
+  .header .header-layout {
+    padding: 60px 16px;
+  }
+  .favorite-coffee .coffee-slider {
+    grid-template-columns: repeat(auto-fill, 100%);
+  }
+  .favorite-coffee .coffee-slider__window .row-items {
+    width: calc(300% + 80px);
+    gap: 40px;
+  }
+  .favorite-coffee .coffee-slider__window .row-items .card-content__image > * {
+    width: 100%;
+  }
+  .favorite-coffee .coffee-slider__controls {
+    grid-column-start: initial;
+  }
+  .favorite-coffee .coffee-slider__left-btn, .favorite-coffee .coffee-slider__right-btn {
+    display: none;
+  }
+  .footer .footer-wrapper {
+    padding: 60px 16px;
+    gap: 40px;
+  }
+}
+@media (max-width: 450px) {
+  .header, .content,
+  .footer {
+    padding: 0 16px;
+  }
+  .mobile-app .btn-links-app {
+    flex-direction: column;
   }
 }
 

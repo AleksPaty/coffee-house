@@ -30,3 +30,18 @@ h3 {
 p {
     @include text-styling(400, 1.6rem, 150%);
 }
+%circle-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+
+@media (max-width: 628px) {
+    h1 {
+        @include text-styling(600, 4.2rem, 115%);
+    }
+    h2 {
+        @include text-styling(600, 3.2rem, 125%);
+    }
+}
