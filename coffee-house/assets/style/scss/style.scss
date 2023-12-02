@@ -95,13 +95,14 @@
         max-width: 100%;
         padding: 100px;
         border-radius: 40px;
-        background: url("../image/header-block-layout.jpg"), lightgray 50% / cover no-repeat;
-        background-position-x: 50%;
+        background: url("../image/header-block-layout.jpg"), lightgray;
+        background-position: 50%;
+        background-size: cover;
 
         &__promo {
             display: flex;
             max-width: 530px;
-            height: 444px;
+            max-height: 444px;
             flex-direction: column;
             gap: 40px;
             color: $text-light;
@@ -160,6 +161,7 @@
         grid-template-rows: max-content auto;
         gap: 40px;
         align-items: center;
+        justify-content: space-between;
 
         &__left-btn,
         &__right-btn {
@@ -210,6 +212,9 @@
                         max-width: 480px;
                         margin: 0 auto;
 
+                        &__image > * {
+                            display: block;
+                        }
                         &__text {
                             display: flex;
                             margin-top: 20px;
@@ -502,7 +507,7 @@
 
                     .burger-icon {
                         position: relative;
-                        transform: translate(22px - 8px, 14.7px);
+                        transform: translate(21px - 8px, 16px);
                     }
                     .burger-icon,
                     .burger-icon::after {
@@ -542,6 +547,10 @@
     .mobile-app {
         flex-direction: column;
         gap: 100px;
+
+        &__offer, &__image {
+            max-width: 100%;
+        }
     }
 }
 
@@ -588,6 +597,8 @@
         padding: 0 16px;
     }
     .mobile-app {
+        gap: 40px;
+
         .btn-links-app {
             flex-direction: column;
         }

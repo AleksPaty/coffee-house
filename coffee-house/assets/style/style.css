@@ -143,13 +143,14 @@ p {
   max-width: 100%;
   padding: 100px;
   border-radius: 40px;
-  background: url("../image/header-block-layout.jpg"), lightgray 50%/cover no-repeat;
-  background-position-x: 50%;
+  background: url("../image/header-block-layout.jpg"), lightgray;
+  background-position: 50%;
+  background-size: cover;
 }
 .header .header-layout__promo {
   display: flex;
   max-width: 530px;
-  height: 444px;
+  max-height: 444px;
   flex-direction: column;
   gap: 40px;
   color: #E1D4C9;
@@ -207,6 +208,7 @@ p {
   grid-template-rows: max-content auto;
   gap: 40px;
   align-items: center;
+  justify-content: space-between;
 }
 .favorite-coffee .coffee-slider__left-btn, .favorite-coffee .coffee-slider__right-btn {
   border: 1px solid #665F55;
@@ -252,6 +254,9 @@ p {
 .favorite-coffee .coffee-slider__window .row-items__card .card-content {
   max-width: 480px;
   margin: 0 auto;
+}
+.favorite-coffee .coffee-slider__window .row-items__card .card-content__image > * {
+  display: block;
 }
 .favorite-coffee .coffee-slider__window .row-items__card .card-content__text {
   display: flex;
@@ -513,7 +518,7 @@ p {
   }
   .header .nav-wrapper .header-menu__burger .burger-icon {
     position: relative;
-    transform: translate(14px, 14.7px);
+    transform: translate(13px, 16px);
   }
   .header .nav-wrapper .header-menu__burger .burger-icon,
   .header .nav-wrapper .header-menu__burger .burger-icon::after {
@@ -545,6 +550,9 @@ p {
     flex-direction: column;
     gap: 100px;
   }
+  .mobile-app__offer, .mobile-app__image {
+    max-width: 100%;
+  }
 }
 @media (max-width: 715px) {
   .header .header-layout {
@@ -575,6 +583,9 @@ p {
   .header, .content,
   .footer {
     padding: 0 16px;
+  }
+  .mobile-app {
+    gap: 40px;
   }
   .mobile-app .btn-links-app {
     flex-direction: column;
