@@ -74,13 +74,6 @@
                     text-decoration: none;
                     color: $text-dark;
                 }
-                
-                &:hover > {
-                    .underline-hover {
-                        left: 0;
-                        width: 100%;
-                    }
-                }
             }
 
             &__item_shadow {
@@ -320,15 +313,6 @@
                     @include text-styling(600, 1.6rem, 150%)
                 }
             }
-
-            &:hover {
-                background-color: $bg-container;
-                color: $text-light;
-
-                svg {
-                    fill: $text-light;
-                }
-            }
         }
     }
     &__image {
@@ -414,6 +398,42 @@
                 .underline-hover {
                     width: 70%;
                 }
+            }
+        }
+    }
+}
+
+//  For hover (desktop / mobile)
+
+@media (pointer: fine) {
+    .header {
+        .nav-wrapper {
+            .header-menu__item:hover > {
+                .underline-hover {
+                    left: 0;
+                    width: 100%;
+                }
+            }
+        }
+    }
+    .mobile-app {
+        .btn-links-app {
+            .btn-link-app:hover {
+                background-color: $bg-container;
+                color: $text-light;
+
+                svg {
+                    fill: $text-light;
+                }
+            }
+        }
+    }
+    .footer {
+        .footer-offer__social-link:hover {
+            background-color: $bg-body;
+
+            svg {
+                stroke: $text-dark;
             }
         }
     }

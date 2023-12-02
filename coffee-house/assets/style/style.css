@@ -132,10 +132,6 @@ p {
   text-decoration: none;
   color: #403F3D;
 }
-.header .nav-wrapper .header-menu__item:hover > .underline-hover {
-  left: 0;
-  width: 100%;
-}
 .header .nav-wrapper .header-menu__item_shadow a {
   text-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
 }
@@ -364,13 +360,6 @@ p {
   font-size: 1.6rem;
   line-height: 150%;
 }
-.mobile-app .btn-links-app .btn-link-app:hover {
-  background-color: #665F55;
-  color: #E1D4C9;
-}
-.mobile-app .btn-links-app .btn-link-app:hover svg {
-  fill: #E1D4C9;
-}
 .mobile-app__image {
   max-height: 630px;
 }
@@ -450,6 +439,25 @@ p {
   width: 70%;
 }
 
+@media (pointer: fine) {
+  .header .nav-wrapper .header-menu__item:hover > .underline-hover {
+    left: 0;
+    width: 100%;
+  }
+  .mobile-app .btn-links-app .btn-link-app:hover {
+    background-color: #665F55;
+    color: #E1D4C9;
+  }
+  .mobile-app .btn-links-app .btn-link-app:hover svg {
+    fill: #E1D4C9;
+  }
+  .footer .footer-offer__social-link:hover {
+    background-color: #E1D4C9;
+  }
+  .footer .footer-offer__social-link:hover svg {
+    stroke: #403F3D;
+  }
+}
 @media screen and (max-width: 1045px) {
   .footer .footer-wrapper {
     padding: 100px 60px;
