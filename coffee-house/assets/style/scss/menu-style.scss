@@ -353,15 +353,11 @@
     }
 }
 
-@media screen and (max-width: 805px) {
+@media (max-width: 769px) {
     .header {
         .nav-wrapper {
             .coffee-menu {
                 margin-top: 100px;
-
-                .underline-hover {
-                    display: none;
-                }
             }
             .header-menu {
                 position: absolute;
@@ -399,11 +395,21 @@
                         width: 16px;
                         height: 1.5px;
                         background-color: $text-dark;
+                        transition: all 0.5s;
                     } 
                     .burger-icon::after {
                         content: '';
                         position: absolute;
                         top: 8px;
+                    }
+                }
+                &__burger-active {
+                    .burger-icon {
+                        transform: translate(21px - 8px, 20px) rotate(45deg);
+                    }
+                    .burger-icon::after {
+                        top: 0;
+                        transform: rotate(-90deg);
                     }
                 }
 

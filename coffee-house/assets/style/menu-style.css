@@ -364,12 +364,9 @@ p {
     width: 100%;
   }
 }
-@media screen and (max-width: 805px) {
+@media (max-width: 769px) {
   .header .nav-wrapper .coffee-menu {
     margin-top: 100px;
-  }
-  .header .nav-wrapper .coffee-menu .underline-hover {
-    display: none;
   }
   .header .nav-wrapper .header-menu {
     position: absolute;
@@ -406,11 +403,19 @@ p {
     width: 16px;
     height: 1.5px;
     background-color: #403F3D;
+    transition: all 0.5s;
   }
   .header .nav-wrapper .header-menu__burger .burger-icon::after {
     content: "";
     position: absolute;
     top: 8px;
+  }
+  .header .nav-wrapper .header-menu__burger-active .burger-icon {
+    transform: translate(13px, 20px) rotate(45deg);
+  }
+  .header .nav-wrapper .header-menu__burger-active .burger-icon::after {
+    top: 0;
+    transform: rotate(-90deg);
   }
   .header .nav-wrapper .header-menu__list {
     flex-direction: column;

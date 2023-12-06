@@ -181,13 +181,34 @@
             margin: 0 auto;
             grid-column-start: 2;
         }
-        &__line {
+        &__bare {
+            position: relative;
             width: 40px;
             border-radius: 100px;
             background-color: $border-light;
         }
-        &__line_active {
+        &__bare_active {
+            .coffee-slider__progress {
+                animation: fill-progress 5s linear;
+            }
+        }
+        &__progress {
+            position: absolute;
+            top: 0;
+            width: 0;
+            height: 100%;
             background-color: $border-dark;
+        }
+        @keyframes fill-progress {
+            0% {
+                width: 0;
+            }
+            95% {
+                width: 100%;
+            }
+            100% {
+                width: 0;
+            }
         }
 
         &__window {
@@ -197,6 +218,7 @@
             .row-items {
                 display: flex;
                 width: 100% * 3;
+                transition: transform .8s;
 
                 &__card {
                     width: 1152px;
@@ -416,6 +438,15 @@
             }
         }
     }
+    .favorite-coffee {
+        .coffee-slider__window:hover ~ .coffee-slider__controls {
+            .coffee-slider__bare_active {
+                .coffee-slider__progress {
+                    animation-play-state: paused;
+                }
+            }
+        }
+    }
     .mobile-app {
         .btn-links-app {
             .btn-link-app:hover {
@@ -434,6 +465,17 @@
 
             svg {
                 stroke: $text-dark;
+            }
+        }
+    }
+}
+@media (hover: none) and (pointer: coarse) {
+    .favorite-coffee {
+        .coffee-slider__window:hover ~ .coffee-slider__controls {
+            .coffee-slider__bare_active {
+                .coffee-slider__progress {
+                    animation-play-state: paused;
+                }
             }
         }
     }
@@ -494,6 +536,17 @@
 }
 
 @media screen and (max-width: 805px) {
+    .mobile-app {
+        flex-direction: column;
+        gap: 100px;
+
+        &__offer, &__image {
+            max-width: 100%;
+        }
+    }
+}
+
+@media (max-width: 769px) {
     .header {
         .nav-wrapper {
             .coffee-menu {
@@ -535,11 +588,21 @@
                         width: 16px;
                         height: 1.5px;
                         background-color: $text-dark;
+                        transition: all 0.5s;
                     } 
                     .burger-icon::after {
                         content: '';
                         position: absolute;
                         top: 8px;
+                    }
+                }
+                &__burger-active {
+                    .burger-icon {
+                        transform: translate(21px - 8px, 20px) rotate(45deg);
+                    }
+                    .burger-icon::after {
+                        top: 0;
+                        transform: rotate(-90deg);
                     }
                 }
 
@@ -561,15 +624,6 @@
                     opacity: 1;
                 }
             }
-        }
-    }
-
-    .mobile-app {
-        flex-direction: column;
-        gap: 100px;
-
-        &__offer, &__image {
-            max-width: 100%;
         }
     }
 }
