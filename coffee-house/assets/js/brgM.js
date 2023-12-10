@@ -10,3 +10,11 @@ burgerBtn.onclick = (e) => {
     menuArea.classList.toggle('header-menu-open')
     burgerBtn.classList.toggle(openClass)
 }
+
+menuArea.addEventListener("click", (e) => {
+   console.dir(e.target.tagName)
+   if (e.target.tagName === "A") {
+    menuArea.classList.toggle('header-menu-open')
+    burgerBtn.classList.toggle(openClass)
+   }
+})

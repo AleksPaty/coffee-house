@@ -103,14 +103,8 @@
             @include flex-rules(space-between, '', '');
 
             .menu__tab {
-                @include flex-rules('', center, '');
-                gap: 8px;
+                @extend %input-btn;
                 max-width: 124px;
-                height: 46px;
-                padding: 8px 15px 8px 8px;
-                border: 1px solid $border-light;
-                border-radius: 100px;
-                background-color: $bg-body;
                 cursor: pointer;
                 transition: background-color 0.8s;
 
@@ -127,24 +121,20 @@
                     color: $text-dark;
                     transition: color 0.8s;
                     cursor: inherit;
-
-                    input {
-                        display: none;
-                    }
                 }
-
-                &_checked {
-                    background-color: $bg-container;
-
-                    .menu__tab-icon {
-                        background-color: $bg-body;
-                    }
-                    .name {
-                        color: $text-light;
-                    }
+                input {
+                    display: none;
                 }
-                &_checked,
-                &_checked > .name {
+            }
+            .menu__tab:has(input:checked) {
+                background-color: $bg-container;
+                cursor: context-menu;
+
+                .menu__tab-icon {
+                    background-color: $bg-body;
+                }
+                .name {
+                    color: $text-light;
                     cursor: context-menu;
                 }
             }
@@ -156,19 +146,19 @@
         max-height: 1052px;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: repeat(2, 1fr);
+        grid-auto-rows: auto;
         gap: 40px;
         
+        &-item.none {
+            display: none;
+        }
         &-item {
             max-width: 310px;
             border: 1px solid $border-light;
             border-radius: 40px;
 
             &__label {
-                max-height: 310px;
-                @include flex-rules(center, center, '');
-                overflow: hidden;
-                border-radius: 40px;
+                @extend %label-style;
 
                 img {
                     width: 100%;
@@ -186,12 +176,10 @@
                     flex-grow: 1;
                 }
             }
-            &:hover {
-                img {
-                    transform: scale(1.0);
-                }
-            }
         }
+    }
+    .our-menu.show {
+        max-height: max-content;
     }
 
     .menu__adding-btn {
@@ -273,6 +261,123 @@
     }
 }
 
+.overlay {
+    display: none;
+}
+.overlay.open {
+    @include flex-rules(center, center, '');
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    padding: 0 40px;
+    inset: 0;
+    background-color: $bg-backdrop;
+
+    .modal-window {
+        max-width: 800px;
+        min-height: 504px;
+        border-radius: 40px;
+        background-color: $bg-body;
+
+        &__inner {
+            padding: 16px;
+            display: flex;
+            gap: 20px;
+        }
+
+        &__label {
+            max-width: 310px;
+            flex: 1 0 0;
+            @extend %label-style;
+        }
+        &__description {
+            display: flex;
+            flex-direction: column;
+            flex: 1 0 0;
+            max-width: 438px;
+            gap: 20px;
+
+            form {
+                margin-top: 8px;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+        }
+        
+        &__title {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .size-btn,
+        .addition-btn {
+            @extend %input-btn;
+            transition: background-color .5s;
+            cursor: pointer;
+            
+            &__icon {
+                padding: 4px;
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                @include text-styling(600, 1.6rem, 150%);
+                text-align: center;
+                background-color: $border-light;
+                transition: background-color .5s;
+            }
+            .text {
+                @include text-styling(600, 1.57rem, 150%);
+                color: $text-dark;
+                cursor: pointer;
+            }
+            input {
+                display: none;
+            }
+        }
+        .size-btn:has(input:checked),
+        .addition-btn:has(input:checked) {
+            background-color: $bg-container;
+
+            .size-btn__icon {
+                background-color: $bg-body;
+            }
+            .text {
+                color: $text-light;
+            }
+        }
+        .size-btn:has(input:checked) {
+            cursor: context-menu;
+            .text {
+                cursor: context-menu;
+            }
+        }
+
+        &__result {
+            @include flex-rules(space-between, '', '');
+        }
+        &__allarm {
+            display: flex;
+            gap: 8px;
+            padding: 12px 0;
+            border-top: 1px solid $border-light;
+            p {
+                flex: 1 0 0;
+                @include text-styling(600, 1rem, 140%);
+            }
+        }
+        &__close {
+            padding: 9px 78px;
+            border-radius: 100px;
+            background-color: $bg-body;
+            border-color: $border-dark;
+            @include text-styling(600, 1.6rem, 150%);
+            cursor: pointer;
+        }
+    }
+}
+
 //  For hover (desktop / mobile)
 
 @media (pointer: fine) {
@@ -283,6 +388,13 @@
                     left: 0;
                     width: 100%;
                 }
+            }
+        }
+    }
+    .menu {
+        .our-menu-item:hover {
+            .our-menu-item__label > * {
+                transform: scale(1.0);
             }
         }
     }
@@ -329,6 +441,9 @@
             border: 1px solid $border-dark;
             background-color: $bg-body;
         }
+        .menu__adding-btn.none {
+            display: none;
+        }
     }
 }
 
@@ -361,9 +476,11 @@
             }
             .header-menu {
                 position: absolute;
-                height: 0px;
-                top: 0;
-                left: 0;
+                padding-top: 60px;
+                height: 924px;
+                width: 0;
+                top: 99px;
+                left: 100%;
                 flex-direction: column;
                 align-items: center;
                 overflow: hidden;
@@ -371,10 +488,8 @@
                 transition: all 0.6s;
 
                 &-open {
-                    top: 99px;
-                    padding-top: 60px;
-                    height: 924px;
-                    transform: scale(1);
+                    left: 0;
+                    width: 100%;
                     background-color: $bg-body;
                 }
 
@@ -433,6 +548,15 @@
                     transform: scale(1.1);
                 }
             }
+        }
+    }
+}
+
+@media (max-width: 605px) {
+    .overlay.open {
+        padding: 0 20px;
+        .modal-window__label {
+            display: none;
         }
     }
 }

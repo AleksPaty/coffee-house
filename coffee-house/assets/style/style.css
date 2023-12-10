@@ -237,6 +237,9 @@ p {
 .favorite-coffee .coffee-slider__bare_active .coffee-slider__progress {
   animation: fill-progress 5s linear;
 }
+.favorite-coffee .coffee-slider__bare_active.paused .coffee-slider__progress {
+  animation-play-state: paused;
+}
 .favorite-coffee .coffee-slider__progress {
   position: absolute;
   top: 0;
@@ -481,11 +484,6 @@ p {
     stroke: #403F3D;
   }
 }
-@media (hover: none) and (pointer: coarse) {
-  .favorite-coffee .coffee-slider__window:hover ~ .coffee-slider__controls .coffee-slider__bare_active .coffee-slider__progress {
-    animation-play-state: paused;
-  }
-}
 @media screen and (max-width: 1045px) {
   .footer .footer-wrapper {
     padding: 100px 60px;
@@ -538,9 +536,11 @@ p {
   }
   .header .nav-wrapper .header-menu {
     position: absolute;
-    height: 0px;
-    top: 0;
-    left: 0;
+    padding-top: 60px;
+    height: 924px;
+    width: 0;
+    top: 99px;
+    left: 100%;
     flex-direction: column;
     align-items: center;
     overflow: hidden;
@@ -548,10 +548,8 @@ p {
     transition: all 0.6s;
   }
   .header .nav-wrapper .header-menu-open {
-    top: 99px;
-    padding-top: 60px;
-    height: 924px;
-    transform: scale(1);
+    left: 0;
+    width: 100%;
     background-color: #E1D4C9;
   }
   .header .nav-wrapper .header-menu__burger {

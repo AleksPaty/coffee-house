@@ -192,6 +192,11 @@
                 animation: fill-progress 5s linear;
             }
         }
+        &__bare_active.paused {
+            .coffee-slider__progress {
+                animation-play-state: paused;
+            }
+        }
         &__progress {
             position: absolute;
             top: 0;
@@ -469,17 +474,17 @@
         }
     }
 }
-@media (hover: none) and (pointer: coarse) {
-    .favorite-coffee {
-        .coffee-slider__window:hover ~ .coffee-slider__controls {
-            .coffee-slider__bare_active {
-                .coffee-slider__progress {
-                    animation-play-state: paused;
-                }
-            }
-        }
-    }
-}
+// @media (hover: none) and (pointer: coarse) {
+//     .favorite-coffee {
+//         .coffee-slider__window:hover ~ .coffee-slider__controls {
+//             .coffee-slider__bare_active {
+//                 .coffee-slider__progress {
+//                     animation-play-state: paused;
+//                 }
+//             }
+//         }
+//     }
+// }
 
 //! Media-queries
 
@@ -554,9 +559,11 @@
             }
             .header-menu {
                 position: absolute;
-                height: 0px;
-                top: 0;
-                left: 0;
+                padding-top: 60px;
+                height: 924px;
+                width: 0;
+                top: 99px;
+                left: 100%;
                 flex-direction: column;
                 align-items: center;
                 overflow: hidden;
@@ -564,10 +571,8 @@
                 transition: all 0.6s;
 
                 &-open {
-                    top: 99px;
-                    padding-top: 60px;
-                    height: 924px;
-                    transform: scale(1);
+                    left: 0;
+                    width: 100%;
                     background-color: $bg-body;
                 }
 
