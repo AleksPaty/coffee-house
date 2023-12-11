@@ -138,10 +138,17 @@ p {
 .header .header-layout {
   max-width: 100%;
   padding: 100px;
+  position: relative;
   border-radius: 40px;
-  background: url("../image/header-block-layout.jpg"), lightgray;
-  background-position: 50%;
-  background-size: cover;
+  overflow: hidden;
+}
+.header .header-layout .vidoe-layout {
+  position: absolute;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  z-index: -1;
 }
 .header .header-layout__promo {
   display: flex;
@@ -522,6 +529,9 @@ p {
   }
 }
 @media screen and (max-width: 805px) {
+  .header .header-layout {
+    padding: 100px 60px;
+  }
   .mobile-app {
     flex-direction: column;
     gap: 100px;
@@ -587,9 +597,6 @@ p {
     flex-direction: column;
     align-items: center;
     gap: 60px;
-  }
-  .header .header-layout {
-    padding: 100px 60px;
   }
   .header .header-layout__btn .btn-title {
     left: -14px;
