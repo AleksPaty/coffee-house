@@ -43,8 +43,7 @@ const changeProductCards = (category) => {
     })
     hideRefreshBtn(count)
 }
-console.dir(window)
-menuBlock.addEventListener('scroll', (e) => console.dir(e.preventDefault()))
+
 function hideRefreshBtn (count) {
     if (count < 5) {
         addCardBtn.classList.add("none")
