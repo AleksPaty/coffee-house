@@ -35,7 +35,22 @@ p {
     height: 60px;
     border-radius: 50%;
 }
-
+%label-style {
+    max-height: 310px;
+    @include flex-rules(center, center, '');
+    overflow: hidden;
+    border-radius: 40px;
+}
+%input-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 46px;
+    padding: 8px 15px 8px 8px;
+    border: 1px solid $border-light;
+    border-radius: 100px;
+    background-color: $bg-body;
+}
 
 @media (max-width: 628px) {
     h1 {

@@ -55,162 +55,36 @@
                 Behind each of our cups hides an <span class="text-accent">amazing surprise</span>
             </h2>
             <div class="menu__tabs">
-                <div class="menu__tab menu__tab_checked">
+                <div class="menu__tab">
+                    <input type="radio" name="menu" id="coffee" checked>
                     <div class="menu__tab-icon">
                         <img src="assets/image/forMenu/coc.svg" alt="cup">
                     </div>
-                    <label class="name" for="coffee"> Coffee
-                        <input type="radio" name="menu" id="coffee" checked>
+                    <label class="name" for="coffee"> 
+                        Coffee
                     </label>
                 </div>
                 <div class="menu__tab">
+                    <input type="radio" name="menu" id="tea">
                     <div class="menu__tab-icon">
                         <img src="assets/image/forMenu/ket.svg" alt="kettle">
                     </div>
-                    <label class="name" for="tea"> Tea
-                        <input type="radio" name="menu" id="tea">
+                    <label class="name" for="tea">
+                        Tea
                     </label>
                 </div>
                 <div class="menu__tab">
+                    <input type="radio" name="menu" id="dessert">
                     <div class="menu__tab-icon">
                         <img src="assets/image/forMenu/cak.svg" alt="cake">
                     </div>
-                    <label class="name" for="dessert"> Dessert
-                        <input type="radio" name="menu" id="dessert">
+                    <label class="name" for="dessert">
+                        Dessert
                     </label>
                 </div>
             </div>
         </div>
-        <div class="our-menu">
-            <div class="our-menu-item">
-                <div class="our-menu-item__label">
-                    <img src="assets/image/forMenu/coffee-1.png" alt="cof1">
-                </div>
-                <div class="our-menu-item__description">
-                    <h3>
-                        Irish coffee
-                    </h3>
-                    <p>
-                        Fragrant black coffee with Jameson Irish whiskey and whipped milk
-                    </p>
-                    <h3>
-                        $7.00
-                    </h3>
-                </div>
-            </div>
-            <div class="our-menu-item">
-                <div class="our-menu-item__label">
-                    <img src="assets/image/forMenu/coffee-2.png" alt="cof2">
-                </div>
-                <div class="our-menu-item__description">
-                    <h3>
-                        Kahlua coffee
-                    </h3>
-                    <p>
-                        Classic coffee with milk and Kahlua liqueur under a cap of frothed milk
-                    </p>
-                    <h3>
-                        $7.00
-                    </h3>
-                </div>
-            </div>
-            <div class="our-menu-item">
-                <div class="our-menu-item__label">
-                    <img src="assets/image/forMenu/coffee-3.png" alt="cof3">
-                </div>
-                <div class="our-menu-item__description">
-                    <h3>
-                        Honey raf
-                    </h3>
-                    <p>
-                        Espresso with frothed milk, cream and aromatic honey
-                    </p>
-                    <h3>
-                        $5.50
-                    </h3>
-                </div>
-            </div>
-            <div class="our-menu-item">
-                <div class="our-menu-item__label">
-                    <img src="assets/image/forMenu/coffee-4.png" alt="cof4">
-                </div>
-                <div class="our-menu-item__description">
-                    <h3>
-                        Ice cappuccino
-                    </h3>
-                    <p>
-                        Cappuccino with soft thick foam in summer version with ice
-                    </p>
-                    <h3>
-                        $5.00
-                    </h3>
-                </div>
-            </div>
-            <div class="our-menu-item">
-                <div class="our-menu-item__label">
-                    <img src="assets/image/forMenu/coffee-5.png" alt="cof5">
-                </div>
-                <div class="our-menu-item__description">
-                    <h3>
-                        Espresso
-                    </h3>
-                    <p>
-                        Classic black coffee
-                    </p>
-                    <h3>
-                        $4.50
-                    </h3>
-                </div>
-            </div>
-            <div class="our-menu-item">
-                <div class="our-menu-item__label">
-                    <img src="assets/image/forMenu/coffee-6.png" alt="cof6">
-                </div>
-                <div class="our-menu-item__description">
-                    <h3>
-                        Latte
-                    </h3>
-                    <p>
-                        Espresso coffee with the addition of steamed milk and dense milk foam
-                    </p>
-                    <h3>
-                        $5.50
-                    </h3>
-                </div>
-            </div>
-            <div class="our-menu-item">
-                <div class="our-menu-item__label">
-                    <img src="assets/image/forMenu/coffee-7.png" alt="cof7">
-                </div>
-                <div class="our-menu-item__description">
-                    <h3>
-                        Latte macchiato
-                    </h3>
-                    <p>
-                        Espresso with frothed milk and chocolate
-                    </p>
-                    <h3>
-                        $5.50
-                    </h3>
-                </div>
-            </div>
-            <div class="our-menu-item">
-                <div class="our-menu-item__label">
-                    <img src="assets/image/forMenu/coffee-8.png" alt="cof8">
-                </div>
-                <div class="our-menu-item__description">
-                    <h3>
-                        Coffee with cognac
-                    </h3>
-                    <p>
-                        Fragrant black coffee with cognac and whipped cream
-                    </p>
-                    <h3>
-                        $6.50
-                    </h3>
-                </div>
-            </div>
-        </div>
+        <div class="our-menu"></div>
         <button class="menu__adding-btn" type="button">
             <img class="refresh-icon" src="./assets/image/forMenu/refresh.svg" alt="refresh">
         </button>
@@ -280,7 +154,106 @@
             </div>
         </div>
     </footer>
+    <div class="overlay" id="modal">
+        <div class="modal-window">
+            <div class="modal-window__inner" id="modal-window">
+                <div class="modal-window__label">
+                    <img src="assets/image/forMenu/coffee/coffee-1.png" alt="product">
+                </div>
+                <div class="modal-window__description">
+                    <div class="modal-window__title">
+                        <h3>Irish coffee</h3>
+                        <p>
+                            Fragrant black coffee with Jameson Irish whiskey and whipped milk
+                        </p>
+                    </div>
+                    <div class="modal-window__product-size">
+                        <p>Size</p>
+                        <form action="#">
+                            <div class="size-btn">
+                                <input type="radio" name="size" id="200" value="0" checked>
+                                <div class="size-btn__icon">S</div>
+                                <label class="text" for="200"> 
+                                    200 ml
+                                </label>
+                            </div>
+                            <div class="size-btn">
+                                <input type="radio" name="size" id="300" value="0.5">
+                                <div class="size-btn__icon">M</div>
+                                <label class="text" for="300">
+                                    300 ml
+                                </label>
+                            </div>
+                            <div class="size-btn">
+                                <input type="radio" name="size" id="400" value="1">
+                                <div class="size-btn__icon">L</div>
+                                <label class="text" for="400">
+                                    400 ml
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-window__product-add">
+                        <p>Additives</p>
+                        <form action="#">
+                            <div class="addition-btn">
+                                <input type="checkbox" name="sugar" id="sugar" value="0.5">
+                                <div class="addition-btn__icon">
+                                    1
+                                </div>
+                                <label class="text" for="sugar">
+                                    Sugar
+                                </label>
+                            </div>
+                            <div class="addition-btn">
+                                <input type="checkbox" name="cinnamon" id="cinnamon" value="0.5">
+                                <div class="addition-btn__icon">
+                                    2
+                                </div>
+                                <label class="text" for="cinnamon">
+                                    Cinnamon
+                                </label>
+                            </div>
+                            <div class="addition-btn">
+                                <input type="checkbox" name="syrup" id="syrup" value="0.5">
+                                <div class="addition-btn__icon">
+                                    3
+                                </div>
+                                <label class="text" for="syrup">
+                                    Syrup
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-window__result">
+                        <h3>Total:</h3>
+                        <h3>$</h3>
+                    </div>
+                    <div class="modal-window__allarm">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <g clip-path="url(#clip0_268_12877)">
+                                <path d="M8 7.66663V11" stroke="#403F3D" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M8 5.00667L8.00667 4.99926" stroke="#403F3D" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M7.99967 14.6667C11.6816 14.6667 14.6663 11.6819 14.6663 8.00004C14.6663 4.31814 11.6816 1.33337 7.99967 1.33337C4.31778 1.33337 1.33301 4.31814 1.33301 8.00004C1.33301 11.6819 4.31778 14.6667 7.99967 14.6667Z" stroke="#403F3D" stroke-linecap="round" stroke-linejoin="round"/>
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_268_12877">
+                                    <rect width="16" height="16" fill="white"/>
+                                </clipPath>
+                            </defs>
+                        </svg>
+                        <p>
+                            The cost is not final. Download our mobile app to see the final 
+                            price and place your order. Earn loyalty points and enjoy your 
+                            favorite coffee with up to 20% discount.
+                        </p>
+                    </div>
+                    <button class="modal-window__close" type="button">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="./assets/js/brgM.js"></script>
-    <script src="./assets/js/menu.js"></script>
+    <script type="module" src="./assets/js/menu.js"></script>
 </body>
 </html>
