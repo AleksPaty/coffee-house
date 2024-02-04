@@ -13,7 +13,7 @@ const getModalWindow = (className, headerText, bodyText, button = undefined, btn
 
     const body = document.createElement('div');
     body.classList.add('modal-body');
-    body.innerText = `${bodyText}`;
+    body.insertAdjacentHTML('afterbegin',`<p class="great-text">${bodyText}</p>`);
 
     if (button) {
         if (btnPlace === 'body') body.append(button);
@@ -25,7 +25,11 @@ const getModalWindow = (className, headerText, bodyText, button = undefined, btn
 
     document.body.append(overlay)
 
-    function openModal () {
+    function openModal (contentChange = undefined) {
+        if (contentChange) {
+            document.querySelector('.great-text').innerText = contentChange;
+        }
+
         const modal = document.querySelector(`.${className}`);
         modal.parentElement.classList.add('open')
     }

@@ -68,11 +68,9 @@ const getNormalPuzzleList = () => {
 
 const getNormalPuzzle = (min, max) => {
     let puzzleNumb = min + Math.random() * (max + 1 - min);
-    let key = Object.keys(easyPuzzles)[Math.floor(puzzleNumb)];
+    let key = Object.keys(normalPuzzles)[Math.floor(puzzleNumb)];
 
-    return [key, easyPuzzles[key]]
+    return [key, normalPuzzles[key]]
 }
 
 export {getNormalPuzzle, getNormalPuzzleList}
-
-export default normalPuzzles;

@@ -1,6 +1,17 @@
 const getMenu = (menuClass, itemsArr, itemClass) => {
     const nav = document.createElement('nav');
     nav.classList.add(`${menuClass}`);
+    
+    const burgerCheckbox = document.createElement('input');
+    burgerCheckbox.type = 'checkbox';
+    burgerCheckbox.id = 'menu-toggle';
+    const burgerBtn = document.createElement('label');
+    burgerBtn.classList.add('burger-btn');
+    burgerBtn.setAttribute('for', 'menu-toggle');
+    
+    let spanEl = document.createElement('span');
+    spanEl.classList.add('burger-btn_inner');
+    burgerBtn.append(spanEl);
 
     const ul = document.createElement('ul');
     ul.classList.add(`${menuClass}-list`);
@@ -29,7 +40,10 @@ const getMenu = (menuClass, itemsArr, itemClass) => {
         ul.append(li)
     });
 
+    nav.append(burgerCheckbox)
+    nav.append(burgerBtn)
     nav.append(ul);
+    
     return nav
 }
 
