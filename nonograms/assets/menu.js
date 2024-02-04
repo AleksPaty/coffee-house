@@ -20,7 +20,7 @@ const getMenu = (menuClass, itemsArr, itemClass) => {
         let li = document.createElement('li');
         li.classList.add(`${itemClass}`);
 
-        if(v === 'Restart') li.classList.add('restart');
+        if(v === 'Random') li.classList.add('random');
         if (Array.isArray(v)) {
             let underUl = document.createElement('ul');
             underUl.classList.add('dropItems');

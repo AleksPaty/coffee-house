@@ -159,13 +159,13 @@ body {
 }
 .lineClue {
     width: max-content;
-    padding: 3px 0 1px 0;
+    padding: 4px 0 2px 0;
     display: grid;
     order: -1;
 }
 .lineClue .clue {
     justify-content: end;
-    border-bottom: 3px solid #000;
+    border-bottom: 2px solid #000;
 }
 .lineClue .clue > span {
     margin: 0 5px;
@@ -173,28 +173,28 @@ body {
 
 .clue-list5.columnClue {
     grid-template-columns: repeat(5, 1fr);
-    width: 156px;
+    width: 155px;
 }
 .clue-list10.columnClue {
     grid-template-columns: repeat(10, 1fr);
-    width: 256px;
+    width: 255px;
 }
 .clue-list15.columnClue {
     grid-template-columns: repeat(15, 1fr);
-    width: 381px;
+    width: 380px;
 }
 .columnClue {
     position: absolute;
     right: 0;
     bottom: 100%;
-    padding: 0 3px 0 2px;
+    padding: 0 4px 0 2px;
     display: grid;
 }
 .columnClue .clue {
     display: flex;
     flex-direction: column;
     justify-content: end;
-    border-left: 3px solid #000;
+    border-left: 2px solid #000;
 }
 .columnClue .clue:last-child {
     border-right: 3px solid #000;
@@ -257,7 +257,8 @@ body {
     background-color: #DCED83;
 }
 .save-btn,
-.load-btn {
+.load-btn,
+.reset-btn {
     padding: 5px;
     border: none;
     box-shadow: 0 0 1px 0px #5E62D0;
@@ -324,7 +325,7 @@ body {
 }
 
 
-@media (max-width: 576px) {
+@media (max-width: 585px) {
     .menu {
         display: flex;
         justify-content: end;

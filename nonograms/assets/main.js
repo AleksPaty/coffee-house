@@ -26,16 +26,17 @@ class Game {
     createTemplate() {
         let menu = getMenu(
             'menu',
-            ['Restart', ['New 5x5', ...this.easyPuzzleList], ['New 10x10', ...this.normalPuzzleList], ['New 15x15', ...this.hardPuzzleList]],
+            ['Random', ['New 5x5', ...this.easyPuzzleList], ['New 10x10', ...this.normalPuzzleList], ['New 15x15', ...this.hardPuzzleList]],
             'menu-item',
         )
         document.body.append(getHeader(menu))
         document.body.insertAdjacentHTML('beforeend', this.mainTemplate)
         document.body.append(getFooter([
             getButton('save-btn', 'Save game', () => saveGame(this.solveCeil)),
+            getButton('reset-btn', 'Reset game', () => this.restartHandle()),
             getButton('load-btn', 'Load game', () => this.loadPuzzle())
         ]))
-        document.querySelector('.restart').addEventListener('click', () => this.restartHandle(this.solveCeil))
+        document.querySelector('.random').addEventListener('click', () => this.randomHandle())
         
         this.openGreatModal = getModalWindow(
             'greatModal',
@@ -44,6 +45,17 @@ class Game {
             getButton('greatBtn', 'Okey', (e) => e.target.offsetParent.classList.remove('open')),
             'body'
         )
+    }
+
+    randomHandle() {
+        let hardLevel = Math.floor(1 + Math.random() * (3 + 1 - 1));
+
+        if (hardLevel === 1) this.puzzle = new Puzzle(getEasyPuzzle(0, this.easyPuzzleList.length - 1));
+        if (hardLevel === 2) this.puzzle = new Puzzle(getNormalPuzzle(0, this.normalPuzzleList.length - 1));
+        if (hardLevel === 3) this.puzzle = new Puzzle(getHardPuzzle(0, this.hardPuzzleList.length - 1));
+
+        document.querySelector('.main').replaceChildren();
+        this.puzzleRender()
     }
 
     restartHandle() {
