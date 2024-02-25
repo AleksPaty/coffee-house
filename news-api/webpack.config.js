@@ -14,10 +14,10 @@ const baseConfig = {
                 test: /\.css$/i,
                 use: ['style-loader', 'css-loader'],
             },
-            { 
+            {
                 test: /\.ts$/i,
-                use: 'ts-loader'
-            }
+                use: 'ts-loader',
+            },
         ],
     },
     resolve: {
@@ -34,7 +34,7 @@ const baseConfig = {
             filename: 'index.html',
         }),
         new CleanWebpackPlugin(),
-        new EslingPlugin({ extensions: 'ts' })
+        new EslingPlugin({ extensions: 'ts' }),
     ],
 };
 
