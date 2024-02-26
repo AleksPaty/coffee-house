@@ -18,3 +18,9 @@ export interface NewsArticle {
     publishedAt: string;
     content: string;
 }
+
+export interface ResponseNews {
+    status: string;
+    totalResults: number;
+    articles: NewsArticle[];
+}
