@@ -4,8 +4,13 @@ class Loader {
     baseLink: string;
     options: object;
 
-    constructor(baseLink: string, options: { apiKey: number }) {
-        this.baseLink = baseLink;
+    constructor(baseLink: string | undefined, options: object) {
+        if (typeof baseLink === 'string') {
+            this.baseLink = baseLink;
+        } else {
+            this.baseLink = '';
+            throw new Error('baseLink is undefined');
+        }
         this.options = options;
     }
 
