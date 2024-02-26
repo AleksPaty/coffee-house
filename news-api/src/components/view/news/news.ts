@@ -2,7 +2,7 @@ import { NewsArticle } from '../../../types/interface';
 import './news.css';
 
 class News {
-    protected draw(data: NewsArticle[]) {
+    public draw(data: NewsArticle[]) {
         const news = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
 
         const fragment = document.createDocumentFragment();
