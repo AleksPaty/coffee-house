@@ -1,10 +1,11 @@
-export type CallbackFunc<T> = (data?: T | undefined) => void;
+export type CallbackFunc<T> = (data?: T) => void;
+type OptionsType = Record<string, string>;
 
 class Loader {
     private baseLink: string;
-    private options: object;
+    private options: OptionsType;
 
-    constructor(baseLink: string | undefined, options: object) {
+    constructor(baseLink: string | undefined, options: OptionsType) {
         if (typeof baseLink === 'string') {
             this.baseLink = baseLink;
         } else {

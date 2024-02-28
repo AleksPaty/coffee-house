@@ -1,9 +1,9 @@
-import { NewsSources, ResponseNews } from '../../types/interface';
+import { ResponseNews, ResponseSources } from '../../types/interface';
 import AppLoader from './appLoader';
 import { CallbackFunc } from './loader';
 
 class AppController extends AppLoader {
-    public getSources(callback: NonNullable<CallbackFunc<{ status: number; sources: NewsSources[] }>>) {
+    public getSources(callback: NonNullable<CallbackFunc<ResponseSources>>) {
         super.getResp(
             {
                 endpoint: 'sources',
@@ -19,8 +19,8 @@ class AppController extends AppLoader {
         while (target && target !== newsContainer) {
             if (target.classList.contains('source__item')) {
                 const sourceId = target.getAttribute('data-source-id');
-                if (newsContainer.getAttribute('data-source') !== sourceId) {
-                    newsContainer.setAttribute('data-source', sourceId as string);
+                if (newsContainer.getAttribute('data-source') !== sourceId && sourceId) {
+                    newsContainer.setAttribute('data-source', sourceId);
                     super.getResp(
                         {
                             endpoint: 'everything',

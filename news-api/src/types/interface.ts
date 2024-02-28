@@ -24,3 +24,8 @@ export interface ResponseNews {
     totalResults: number;
     articles: NewsArticle[];
 }
+
+export interface ResponseSources {
+    status: number;
+    sources: NewsSources[];
+}
