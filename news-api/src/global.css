@@ -13,6 +13,11 @@ header h1 {
     font-weight: 800;
 }
 
+main {
+    display: flex;
+    gap: 30px;
+}
+
 footer {
     height: 100px;
     display: flex;
