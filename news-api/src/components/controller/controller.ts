@@ -12,7 +12,7 @@ class AppController extends AppLoader {
         );
     }
 
-    public getNews(e: Event, callback: NonNullable<CallbackFunc<ResponseNews>>) {
+    public getNews(e: Event, callback: NonNullable<CallbackFunc<ResponseNews>>): void {
         let target = e.target as HTMLElement;
         const newsContainer = e.currentTarget as HTMLElement;
 

@@ -20,7 +20,7 @@ class Loader {
         callback = (): void => {
             console.error('No callback for GET response');
         }
-    ) {
+    ): void {
         this.load('GET', endpoint, callback, options);
     }
 
@@ -34,7 +34,7 @@ class Loader {
         return res;
     }
 
-    private makeUrl(options: object, endpoint: string) {
+    private makeUrl(options: object, endpoint: string): string {
         const urlOptions = { ...this.options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
@@ -45,7 +45,7 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    private load<T>(method: string, endpoint: string, callback: CallbackFunc<T>, options = {}) {
+    private load<T>(method: string, endpoint: string, callback: CallbackFunc<T>, options = {}): void {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())

@@ -4,7 +4,7 @@ import './news.css';
 type NoEmptyElement = NonNullable<HTMLElement | null>;
 
 class News {
-    public draw(data: NewsArticle[]) {
+    public draw(data: NewsArticle[]): void {
         const news = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
 
         const fragment = document.createDocumentFragment();
