@@ -106,6 +106,23 @@ export default class Api {
         return response;
     }
 
+    static async getWinners(page: number, sort: string, order = 'ASC', limit = 10): Promise<Response> {
+        const baseUrl = 'http://127.0.0.1:3000/winners';
+        const params: QueryParams = {
+            _page: page,
+            _limit: limit,
+            _sort: sort,
+            _order: order,
+        };
+        const paramsUrl = Api.createQueryString(params);
+        try {
+            const response = await fetch(baseUrl + paramsUrl);
+            return response;
+        } catch (error) {
+            throw new Error((error as Error).message);
+        }
+    }
+
     static async getWinner(id: number): Promise<Response> {
         const baseUrl = 'http://127.0.0.1:3000/winners/';
         const response = await fetch(baseUrl + id);

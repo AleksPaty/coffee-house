@@ -1,14 +1,14 @@
-import { makeButton } from '../button';
+import { makeButton } from '../components/button';
 
-export class GaragePagination {
+export class Pagination {
     elemWrapper = document.createElement('div');
     buttonPrev: HTMLButtonElement;
     buttonNext: HTMLButtonElement;
 
-    constructor() {
-        this.buttonPrev = makeButton('prev', 'btn_garagePrev');
+    constructor(btnPrevClass: string, btnNextClass: string) {
+        this.buttonPrev = makeButton('prev', `${btnPrevClass}`);
         this.buttonPrev.disabled = true;
-        this.buttonNext = makeButton('next', 'btn_garageNext');
+        this.buttonNext = makeButton('next', `${btnNextClass}`);
 
         this.elemWrapper.className = 'garage-pagination';
         this.elemWrapper.append(this.buttonPrev, this.buttonNext);

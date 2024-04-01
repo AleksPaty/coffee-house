@@ -1,11 +1,12 @@
 .container {
     padding: 12px;
+    position: relative;
     min-height: 100vh;
     max-height: max-content;
     background: #5d5959;
 
     .garage-form {
-        margin: 0 auto 32px;
+        margin: 5px auto 32px;
         height: 60px;
         display: flex;
         flex-direction: column;

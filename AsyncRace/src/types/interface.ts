@@ -24,3 +24,8 @@ export interface CarEngine {
     velocity: number;
     distance: number;
 }
+
+export interface FullCarData extends CarData {
+    wins: number;
+    time: number;
+}

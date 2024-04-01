@@ -1,0 +1,49 @@
+.winners-page {
+    display: flex;
+    position: absolute;
+    top: 36px;
+    left: 0;
+    width: 100%;
+    min-height: 100%;
+    height: max-content;
+    flex-direction: column;
+    align-items: center;
+    z-index: 5;
+    background: #5d5959;
+
+    &.hide {
+        display: none;
+        overflow: hidden;
+    }
+
+    &__header {
+        letter-spacing: 1px;
+    }
+
+    &__header {
+        margin: 10px auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #fff;
+
+        h2 {
+            margin-bottom: 16px;
+            text-align: center;
+        }
+    }
+
+    &__table {
+        border-collapse: collapse;
+        border: 2px solid rgb(140 140 140);
+        color: #fff;
+        margin-bottom: 20px;
+
+        th,
+        td {
+            border: 1px solid rgb(160 160 160);
+            padding: 8px 10px;
+            text-align: center;
+        }
+    }
+}

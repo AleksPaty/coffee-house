@@ -69,7 +69,7 @@ const makeCarAnimation = (car: HTMLElement, time: number): Animation => {
         const carTime = (time / 1000).toFixed(2);
 
         curCar.style.transform = `translateX(${finalDistance}px) matrix(-1, 0, 0, 1, 0, 0)`;
-        controlWinCar(curCar, +carTime);
+        controlWinCar(curCar, +carTime).catch(() => console.log('error in controlWinCar, in animation'));
     };
     return animation;
 };

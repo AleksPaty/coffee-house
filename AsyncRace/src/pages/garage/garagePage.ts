@@ -1,13 +1,13 @@
 import { CarRace } from '../../components/car-race/car-race';
 import { Garage } from '../../components/garage/garage';
 import { GarageForm } from '../../components/garage/garage-form';
-import { GaragePagination } from '../../components/garage/garage-pagination';
+import { Pagination } from '../../utils/innerPagination';
 import { createCarHandle } from '../../utils/handlers';
 
 export class GaragePage {
     headerBLock = new GarageForm();
     garageBlock = new Garage();
-    pagination = new GaragePagination();
+    pagination = new Pagination('btn_garagePrev', 'btn_garageNext');
 
     private addEvents(): void {
         const createCarBtns = this.headerBLock.returnButtonsElem();
