@@ -24,7 +24,7 @@ export const createCarHandle = (
         .then((status) => {
             if (status === 201) {
                 const garageHeader = raceList?.previousElementSibling?.children[0] as HTMLElement;
-                const carCount = Number(garageHeader.innerText.at(-2));
+                const carCount = setCarCount(0);
                 setCarCount(carCount + 1);
 
                 garageHeader.innerText = `Garage(${carCount + 1})`;
