@@ -3,6 +3,7 @@ import { Garage } from '../../components/garage/garage';
 import { GarageForm } from '../../components/garage/garage-form';
 import { Pagination } from '../../utils/innerPagination';
 import { createCarHandle } from '../../utils/handlers';
+import { generationCar } from '../../utils/generationCar';
 
 export class GaragePage {
     headerBLock = new GarageForm();
@@ -21,7 +22,17 @@ export class GaragePage {
                 this.garageBlock.setCarCount.bind(this.garageBlock)
             )
         );
-        console.log(generateBtn);
+        generateBtn.addEventListener('click', (e) => {
+            for (let i = 1; i <= 100; i += 1) {
+                createCarHandle(
+                    e,
+                    carRace.setCar.bind(carRace),
+                    this.garageBlock.setLastId.bind(this.garageBlock),
+                    this.garageBlock.setCarCount.bind(this.garageBlock),
+                    generationCar()
+                );
+            }
+        });
 
         this.pagination.buttonNext.onclick = (e) => this.paginationHandle.bind(this)(e);
         this.pagination.buttonPrev.onclick = (e) => this.paginationHandle.bind(this)(e);

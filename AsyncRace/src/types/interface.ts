@@ -3,7 +3,7 @@ export interface CarData {
     color: string;
 }
 
-export interface CarProps extends CarData{
+export interface CarProps extends CarData {
     id: number;
 }
 
@@ -17,7 +17,7 @@ export interface WinCar extends WinParams {
 }
 
 export interface QueryParams {
-    [key: string]: string | number
+    [key: string]: string | number;
 }
 
 export interface CarEngine {

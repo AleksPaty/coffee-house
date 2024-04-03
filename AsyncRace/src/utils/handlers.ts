@@ -4,21 +4,35 @@ export const createCarHandle = (
     e: Event,
     setCar: (name: string, color: string, id: number) => HTMLElement,
     setLastId: (lastId: number) => number,
-    setCarCount: (carCaunt: number) => number
+    setCarCount: (carCaunt: number) => number,
+    carValues?: string[]
 ): void => {
     const curBtn = e.currentTarget as HTMLButtonElement;
     const raceList = document.body.querySelector('.garage-main');
-    const form = curBtn.previousElementSibling;
+    const form =
+        curBtn.innerText === 'CREATE'
+            ? curBtn.previousElementSibling
+            : curBtn.previousElementSibling?.previousElementSibling;
+
     const textInput = form?.children[0] as HTMLInputElement;
     const colorInput = form?.children[1] as HTMLInputElement;
 
-    if (textInput.value === '') return;
-    const carData = {
-        name: textInput.value,
-        color: colorInput.value,
-    };
-    textInput.value = '';
-    colorInput.value = '#000000';
+    if (textInput.value === '' && !carValues) {
+        return;
+    }
+
+    const carData = carValues
+        ? {
+              name: carValues[0],
+              color: carValues[1],
+          }
+        : {
+              name: textInput.value,
+              color: colorInput.value,
+          };
+
+    if (textInput.value !== '') textInput.value = '';
+    if (colorInput.value !== '#000000') colorInput.value = '#000000';
 
     Api.createCar(carData)
         .then((status) => {
