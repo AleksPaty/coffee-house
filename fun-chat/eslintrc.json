@@ -1,0 +1,50 @@
+{
+    "root": true,
+    "plugins": ["@typescript-eslint", "prettier", "import"],
+    "extends": [
+        "eslint:recommended",
+        "airbnb-base",
+        "airbnb-typescript/base",
+        "plugin:@typescript-eslint/recommended-type-checked",
+        "plugin:@typescript-eslint/stylistic-type-checked",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:prettier/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": 2018,
+        "sourceType": "module",
+        "project": ["./tsconfig.json"]
+    },
+    "env": {
+        "es6": true,
+        "browser": true,
+        "node": true
+    },
+    "overrides": [
+        {
+            "files": ["webpack.config.js"],
+            "rules": {
+                "@typescript-eslint/no-var-requires": "off"
+            }
+        }
+    ],
+    "rules": {
+        "import/no-unresolved": "error",
+        "@typescript-eslint/no-unsafe-member-access": "off",
+        "no-console": "off",
+        "no-debugger": "off",
+        "class-methods-use-this": "off",
+        "@typescript-eslint/no-misused-promises": "off",
+        "import/prefer-default-export": "off",
+        "@typescript-eslint/no-explicit-any": 2,
+        "@typescript-eslint/lines-between-class-members": "off",
+        "prettier/prettier": [
+            "error",
+            {
+              "endOfLine": "auto"
+            }
+        ]
+    }
+}
