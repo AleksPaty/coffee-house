@@ -1,7 +1,7 @@
 {
-    "name": "async-race",
+    "name": "fun-chat",
     "version": "1.0.0",
-    "description": "Implement CRUD operations for cars using the provided server mock.",
+    "description": "Let's create our own chat.",
     "main": "index.js",
     "scripts": {
       "start": "webpack serve --open --config ./webpack.config.js --env mode=development",
