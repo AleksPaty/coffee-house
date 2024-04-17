@@ -7,7 +7,7 @@ export class Api {
         this.connection = new WebSocket(url);
     }
 
-    public userOperation(operationType: string, userName: string, word: string) {
+    public userOperation(operationType: string, userName: string, word: string): void {
         const id = operationType.includes('IN') ? `login_${userName}` : `logout_${userName}`;
         const data: UserRequest = {
             id,
@@ -22,5 +22,25 @@ export class Api {
 
         const stringData = JSON.stringify(data);
         this.connection.send(stringData);
+    }
+
+    public getAllUsers(): void {
+        const userActive = 'USER_ACTIVE';
+        const userInactive = 'USER_INACTIVE';
+
+        this.connection.send(
+            JSON.stringify({
+                id: `get${userActive.slice(4)}`,
+                type: userActive,
+                payload: null,
+            })
+        );
+        this.connection.send(
+            JSON.stringify({
+                id: `get${userInactive.slice(4)}`,
+                type: userInactive,
+                payload: null,
+            })
+        );
     }
 }

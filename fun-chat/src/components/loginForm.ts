@@ -1,4 +1,5 @@
 import { ElemConstruct } from '../utils/elemConstruct';
+import { getDataUser, setDataUser } from '../utils/storageUtils';
 
 export class LoginForm {
     valueInputs: string[];
@@ -15,10 +16,22 @@ export class LoginForm {
 
         formElem.addEventListener('submit', (e) => {
             e.preventDefault();
-            const [firstName, password] = formElem.querySelectorAll('input');
-            websocketRequest('USER_LOGIN', firstName.value, password.value);
+            const [loginInput, passwordInput] = formElem.querySelectorAll('input');
+            const userData = getDataUser();
+            if (userData) {
+                const [login, password] = userData;
+                websocketRequest('USER_LOGIN', login, password);
+            }
+            if (!userData) {
+                const data = {
+                    login: loginInput.value,
+                    password: passwordInput.value,
+                    isLogined: true,
+                };
 
-            this.removeForm(formElem);
+                setDataUser(data);
+                websocketRequest('USER_LOGIN', loginInput.value, passwordInput.value);
+            }
         });
         return formElem;
     }
@@ -59,10 +72,6 @@ export class LoginForm {
             }
         }
         return fragment;
-    }
-
-    private removeForm(form: HTMLElement): void {
-        form.remove();
     }
 
     public render(websocketRequest: (operationType: string, userName: string, word: string) => void): HTMLElement {

@@ -1,7 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const EslingPlugin = require('eslint-webpack-plugin');
-const webpack = require('webpack');
 
 module.exports = (env) => {
     return {
@@ -37,6 +36,14 @@ module.exports = (env) => {
         plugins: [
             new HtmlWebpackPlugin({ template: path.resolve(__dirname, './src/index.html') }),
             new EslingPlugin({ extensions: '.ts' }),
-        ]
+        ],
+        devServer: {
+            static: {
+              directory: path.join(__dirname, 'dist'),
+            },
+            compress: true,
+            port: 8080,
+            historyApiFallback: true,
+        }
     }
 };
