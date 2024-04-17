@@ -25,17 +25,18 @@ export class Route {
 
     private pageResolver(location: string, userName?: string): void {
         const parent = document.getElementById('app');
+        const appLocation = document.location.pathname.split('/').at(-1);
         parent?.replaceChildren();
 
-        switch (location) {
-            case '/login':
+        switch (appLocation) {
+            case 'login':
                 this.loginPage.render(parent!);
                 break;
-            case '/main':
+            case 'main':
                 this.websocket.getAllUsers();
                 parent?.append(this.mainPage.render(userName!, this.websocket.userOperation.bind(this.websocket)));
                 break;
-            case '/info':
+            case 'info':
                 parent!.innerText = 'On info page';
                 break;
             default:
@@ -54,7 +55,7 @@ export class Route {
                     if (document.location.pathname !== '/main') {
                         window.history.pushState({}, 'Chat', 'main');
                         this.websocket.getAllUsers();
-                        this.pageResolver('/main', this.mainPage.user.login);
+                        this.pageResolver(document.location.pathname, this.mainPage.user.login);
                     }
                     break;
                 }
@@ -72,7 +73,7 @@ export class Route {
                 }
                 case 'USER_LOGOUT': {
                     window.history.replaceState({}, 'Login', 'login');
-                    this.pageResolver('/login');
+                    this.pageResolver(document.location.pathname);
                     break;
                 }
                 default:
@@ -95,7 +96,6 @@ export class Route {
         this.serverListener();
 
         window.onpopstate = (event) => {
-            console.log('onpopstate');
             this.pageResolver(document.location.pathname, this.mainPage.user.login);
             console.log(`location: ${document.location.href}, state: ${JSON.stringify(event.state)}`);
         };
