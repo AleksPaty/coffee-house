@@ -1,11 +1,15 @@
+import { Api } from '../../api/api';
 import { ChatField } from '../../components/chatField';
+import { MainFooter } from '../../components/mainFooter';
+import { MainHeader } from '../../components/mainHeader';
 import { UserList } from '../../components/userList';
 import { ElemConstruct } from '../../utils/elemConstruct';
-import { removeDataUser } from '../../utils/storageUtils';
 
 export class MainPage {
     userList = new UserList();
     userChat = new ChatField();
+    headerBlock = new MainHeader();
+    footerBlock = new MainFooter();
     user = { login: '', password: '', isLogined: false };
 
     private makeWrap(): HTMLElement {
@@ -13,58 +17,88 @@ export class MainPage {
         return wrapper;
     }
 
-    private makeHeaderElems(
-        userName: string,
-        logOutFunc: (operationType: string, userName: string, word: string) => void
-    ): DocumentFragment {
-        const fragment = document.createDocumentFragment();
-        const userBlock = ElemConstruct('div', 'main-header_user', `User: ${userName}`);
-        const controlBlock = ElemConstruct('div', 'main-header_control');
-        const logoutBtn = ElemConstruct('button', 'main-header_logout', 'LogOut');
-        logoutBtn.onclick = () => {
-            removeDataUser();
-            logOutFunc('USER_LOGOUT', this.user.login, this.user.password);
-        };
+    private chooseUserHandle(e: Event, func: (userName: string) => void): void {
+        const targetElem = e.target as HTMLElement;
+        if (targetElem.tagName === 'LI') {
+            const name = targetElem.getAttribute('name');
+            const status = targetElem.className.split(' ').at(-1);
 
-        controlBlock.append(
-            ElemConstruct('h1', 'main-header_title', 'Fun chat'),
-            ElemConstruct('button', 'main-header_info', 'Info'),
-            logoutBtn
-        );
+            this.userChat.makeCurrentUserField(name!, status!);
+            this.userChat.chatingForm?.classList.remove('hide');
+            this.userChat.container.dataset.name = name!;
 
-        fragment.append(userBlock, controlBlock);
-        return fragment;
+            func(name!);
+        }
     }
 
-    private makeChatBlock() {
+    private sendMessageHandle(e: Event, sendFunc: (toUser: string, message: string) => void): void {
+        e.preventDefault();
+        const form = e.target as HTMLFormElement;
+        const messageInput = form.firstElementChild?.lastChild as HTMLInputElement;
+        const recipient = form.parentElement!.dataset.name;
+
+        sendFunc(recipient!, messageInput.value);
+        messageInput.value = '';
+    }
+
+    private changeReadStatusHandle(e: Event, callback: (messageId: string) => void): void {
+        const chatBlock = e.target as HTMLElement;
+        const separateLine = document.getElementById('separate-line');
+        if (!separateLine) return;
+        if (e.type === 'scroll') {
+            const toEnd = Math.floor(chatBlock.scrollHeight - chatBlock.scrollTop);
+            if (toEnd - chatBlock.clientHeight < 2) {
+                console.log(toEnd - chatBlock.clientHeight);
+                this.changeReadStatus(chatBlock, callback);
+            }
+        }
+        if (e.type === 'click' && chatBlock.scrollTop === 0) {
+            this.changeReadStatus(chatBlock, callback);
+        }
+    }
+
+    private changeReadStatus(chatBlock: HTMLElement, callback: (messageId: string) => void): void {
+        const messageList = [...chatBlock.children];
+        if (messageList.length < 2) return;
+        for (let i = messageList.length - 1; i >= 0; i -= 1) {
+            if (messageList[i].classList.contains('right')) return;
+
+            const messageId = messageList[i].id;
+            if (messageId) callback(messageId.slice(8));
+            if (!messageId) {
+                messageList[i].remove();
+                break;
+            }
+        }
+        const userName = chatBlock.parentElement?.dataset.name;
+        this.userList.removeUnreadMessageCount(userName!);
+    }
+
+    private makeChatBlock(): HTMLElement {
         const chatElem = ElemConstruct('div', 'main-chat');
         chatElem.append(this.userList.render(), this.userChat.render());
 
         return chatElem;
     }
 
-    private makeFooterElems(): DocumentFragment {
-        const fragment = document.createDocumentFragment();
-        const gHLink = ElemConstruct('a', 'gh-link', 'My Github', undefined, [
-            { href: 'https://github.com/AleksPaty' },
-        ]);
-        const about = ElemConstruct('p', 'about', 'Thank you for your attention. 2024 ©');
-        const rsSchool = ElemConstruct('p', 're-school', 'RSSchool');
-        fragment.append(gHLink, about, rsSchool);
-        return fragment;
+    private addHandles(api: Api) {
+        this.userList.userList.onclick = (e) => this.chooseUserHandle.bind(this)(e, api.getMessageHistory.bind(api));
+        this.userChat.chatingForm!.onsubmit = (e) => this.sendMessageHandle.bind(this)(e, api.sendMessage.bind(api));
+        this.userChat.messagesField!.onscroll = (e) => {
+            this.changeReadStatusHandle(e, api.readStatusChange.bind(api));
+        };
+        this.userChat.messagesField!.onclick = (e) => this.changeReadStatusHandle(e, api.readStatusChange.bind(api));
     }
 
-    public render(
-        userName: string,
-        logOutFunc: (operationType: string, userName: string, word: string) => void
-    ): HTMLElement {
-        const header = ElemConstruct('div', 'main-header');
-        const footer = ElemConstruct('div', 'main-footer');
+    public render(api: Api): HTMLElement {
         const wrapper = this.makeWrap();
 
-        header.append(this.makeHeaderElems(userName, logOutFunc));
-        footer.append(this.makeFooterElems());
-        wrapper.append(header, this.makeChatBlock(), footer);
+        wrapper.append(
+            this.headerBlock.render(this.user, api.userOperation.bind(api)),
+            this.makeChatBlock(),
+            this.footerBlock.render()
+        );
+        this.addHandles(api);
         return wrapper;
     }
 }

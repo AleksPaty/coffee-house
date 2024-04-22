@@ -13,8 +13,26 @@ export interface PayloadUserList {
     users: UserLogin[]
 }
 
-export interface UserRequest {
+export interface MessageData {
+    id: string,
+    from: string,
+    to: string,
+    text: string,
+    datetime: number,
+    status: {
+        isDelivered: boolean,
+        isReaded: boolean,
+        isEdited: boolean,
+    }
+}
+
+export interface MessageStatus {
+    id: string,
+    status: {isDelivered: boolean} | {isReaded: boolean}
+}
+
+export interface UserResponse {
     id: string,
     type: string,
-    payload: UserData | {user: UserLogin} | PayloadUserList
+    payload: UserData | {user: UserLogin} | PayloadUserList | {error: string} | {message: MessageData} | {message: MessageStatus} | {messages: MessageData[]}
 }

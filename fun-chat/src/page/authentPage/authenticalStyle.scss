@@ -56,3 +56,26 @@
     border: none;
     outline: none;
 }
+
+.modal-error-wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.6);
+}
+.modal-error-content {
+    padding: 16px;
+    width: 260px;
+    text-transform: capitalize;
+    border: 2px solid hsla(0, 0%, 100%, 0.7);
+    border-radius: 6px;
+    background: #282727;
+    text-transform: uppercase;
+    text-align: center;
+    color: #fff;
+}

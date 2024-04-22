@@ -8,7 +8,7 @@ export const ElemConstruct = (
     addAttributes: Attribute[] | undefined = undefined
 ): HTMLElement => {
     const createElem = document.createElement(`${elem}`);
-    createElem.classList.add(`${classElem}`);
+    createElem.className = `${classElem}`;
 
     if (text) createElem.innerText = text;
     if (addAttributes) {
