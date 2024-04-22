@@ -49,7 +49,7 @@ export class ChatField {
 
             messages.forEach((item) => {
                 if (item.from === friendName && !item.status.isReaded && isRead) {
-                    fragment.append(ElemConstruct('div', 'separate-line', 'New messages'));
+                    fragment.append(this.addRemoveSeparateLine('add')!);
                     isRead = false;
                 }
                 const message = makeMessage(item, friendName!);

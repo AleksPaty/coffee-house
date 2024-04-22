@@ -1,5 +1,5 @@
 .main-wrap {
-    width: 1200px;
+    width: 90%;
     height: 560px;
     display: flex;
     flex-direction: column;
@@ -14,6 +14,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        flex-shrink: 0;
     }
     .main-header {
         width: 100%;
@@ -46,6 +47,7 @@
     .main-chat {
         display: flex;
         height: 450px;
+        overflow-y: auto;
         border-top: solid 1px #5C5F6F;
         border-bottom: solid 1px #5C5F6F;
 
@@ -239,5 +241,48 @@
         display: flex;
         justify-content: end;
         gap: 25%;
+    }
+}
+
+@media (max-width: 769px) {
+    .main-wrap {
+        width: 96%;
+        height: 100vh;
+
+        .main-chat_find-wrap {
+            width: 92%;
+        }
+    }
+
+    .message-item {
+        width: 75%;
+        
+        &.right {
+            left: 21%;
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .main-wrap {
+        width: 98%;
+        height: 100vh;
+
+        .main-chat {
+            flex-grow: 1;
+        }
+        .main-header {
+            & .main-header_control > h1 {
+                margin-right: 10px;
+            }
+        }
+        .main-chat_find-wrap {
+            width: 92%;
+        }
+        .main-footer {
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
     }
 }

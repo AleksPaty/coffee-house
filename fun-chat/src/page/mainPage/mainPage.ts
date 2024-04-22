@@ -64,8 +64,8 @@ export class MainPage {
             if (messageList[i].classList.contains('right')) return;
 
             const messageId = messageList[i].id;
-            if (messageId) callback(messageId.slice(8));
-            if (!messageId) {
+            if (messageId.includes('message')) callback(messageId.slice(8));
+            if (!messageId.includes('message')) {
                 messageList[i].remove();
                 break;
             }
@@ -85,9 +85,11 @@ export class MainPage {
         this.userList.userList.onclick = (e) => this.chooseUserHandle.bind(this)(e, api.getMessageHistory.bind(api));
         this.userChat.chatingForm!.onsubmit = (e) => this.sendMessageHandle.bind(this)(e, api.sendMessage.bind(api));
         this.userChat.messagesField!.onscroll = (e) => {
-            this.changeReadStatusHandle(e, api.readStatusChange.bind(api));
+            this.changeReadStatusHandle.bind(this)(e, api.readStatusChange.bind(api));
         };
-        this.userChat.messagesField!.onclick = (e) => this.changeReadStatusHandle(e, api.readStatusChange.bind(api));
+        this.userChat.messagesField!.onclick = (e) => {
+            this.changeReadStatusHandle.bind(this)(e, api.readStatusChange.bind(api));
+        };
     }
 
     public render(api: Api): HTMLElement {

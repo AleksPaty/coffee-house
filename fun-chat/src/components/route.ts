@@ -48,7 +48,6 @@ export class Route {
     private serverListener(): void {
         this.websocket.connection.onmessage = (e) => {
             const responseData = JSON.parse(e.data as string) as UserResponse;
-            console.log(responseData);
             switch (responseData.type) {
                 case 'USER_LOGIN': {
                     const [login, password] = getDataUser()!;
