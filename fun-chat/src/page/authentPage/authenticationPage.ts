@@ -10,12 +10,13 @@ export class AuthenticationPage {
         this.LoginRequest = LoginRequest;
     }
 
-    public makeErrorModal(message: string) {
+    public makeErrorModal(message: string, isClick = true): HTMLElement {
         const modalWrap = ElemConstruct('div', 'modal-error-wrap');
         const modalBlock = ElemConstruct('div', 'modal-error-content', undefined, modalWrap);
         ElemConstruct('p', 'modal-error-text', message, modalBlock);
-        modalWrap.onclick = () => modalWrap.remove();
+        if (isClick) modalWrap.onclick = () => modalWrap.remove();
         document.body.append(modalWrap);
+        return modalWrap;
     }
 
     public render(parent: HTMLElement) {

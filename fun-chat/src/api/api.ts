@@ -2,9 +2,33 @@ import { UserResponse } from '../types/interfaces';
 
 export class Api {
     connection: WebSocket;
+    websocketUrl: string;
 
     constructor(url = 'ws://127.0.0.1:4000') {
+        this.websocketUrl = url;
         this.connection = new WebSocket(url);
+    }
+
+    public closeListener(showErrorMessageFunc: (message: string, isClick: boolean) => HTMLElement) {
+        this.connection.onclose = (e): void => {
+            console.dir(e);
+            if (!e.wasClean) {
+                const errorElem = showErrorMessageFunc('Disconnection server. Try restore the connection', false);
+
+                for (let i = 0; i <= 5; i += 1) {
+                    let isConnect = false;
+                    setTimeout(() => {
+                        this.connection = new WebSocket(this.websocketUrl);
+                        this.connection.onopen = () => {
+                            console.log('connect');
+                            isConnect = true;
+                            errorElem.remove();
+                        };
+                    }, 1000);
+                    if (isConnect) break;
+                }
+            }
+        };
     }
 
     public userOperation(operationType: string, userName: string, word: string): void {

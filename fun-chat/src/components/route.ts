@@ -126,6 +126,10 @@ export class Route {
         };
     }
 
+    private serverDisconnectListener() {
+        this.websocket.closeListener(this.loginPage.makeErrorModal.bind(this.loginPage));
+    }
+
     public initPage(): void {
         const userData = getDataUser();
         if (!userData) {
@@ -138,6 +142,7 @@ export class Route {
         }
 
         this.serverListener();
+        this.serverDisconnectListener();
 
         window.onpopstate = (event) => {
             this.pageResolver(document.location.pathname);
