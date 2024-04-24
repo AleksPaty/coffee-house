@@ -48,3 +48,33 @@ export const changeMessageStatus = (messageStatus: MessageStatus): void => {
         targetMessageStatusElem.innerText = `${status.slice(2)}`.toLowerCase();
     }
 };
+
+export const deleteMessage = (messageId: string): void => {
+    const messageElem = document.getElementById(messageId);
+    messageElem?.remove();
+};
+
+export const makeMessageMenu = (e: MouseEvent, deleteMessageFunc: (messageId: string) => void) => {
+    const chat = e.currentTarget as HTMLElement;
+    const message = (e.target as HTMLElement).closest('.message-item');
+
+    if (!message || message.classList.contains('left')) return;
+
+    const menu = ElemConstruct('ul', 'message-menu');
+    const editItem = ElemConstruct('li', 'message-menu_edit', 'edit', menu);
+    const deleteItem = ElemConstruct('li', 'message-menu_delete', 'delete', menu);
+
+    menu.style.top = `${e.clientY - chat.offsetTop + chat.scrollTop}px`;
+    menu.style.left = `${e.clientX - chat.offsetLeft}px`;
+
+    deleteItem.onclick = () => {
+        deleteMessageFunc(message.id.slice(8));
+        menu.remove();
+        // deleteMessage(message.id);
+    };
+    editItem.onclick = () => {
+        console.log('no realize yet');
+        menu.remove();
+    };
+    chat.append(menu);
+};

@@ -110,4 +110,17 @@ export class Api {
         };
         this.connection.send(JSON.stringify(sendData));
     }
+
+    public deleteMessage(messageId: string): void {
+        const sendData = {
+            id: 'deleteMsg',
+            type: 'MSG_DELETE',
+            payload: {
+                message: {
+                    id: messageId,
+                },
+            },
+        };
+        this.connection.send(JSON.stringify(sendData));
+    }
 }

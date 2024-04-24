@@ -223,6 +223,7 @@
         border-top-right-radius: 0;
         background: #83F0FF;
         color: #000;
+        cursor: pointer;
     }
     &.left {
         border-top-left-radius: 0;
@@ -242,6 +243,18 @@
         justify-content: end;
         gap: 25%;
     }
+}
+
+.message-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    list-style: none;
+    padding: 10px;
+    position: absolute;
+    background: hsl(0, 0%, 35%);
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 @media (max-width: 769px) {

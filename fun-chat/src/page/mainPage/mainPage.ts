@@ -2,6 +2,7 @@ import { Api } from '../../api/api';
 import { ChatField } from '../../components/chatField';
 import { MainFooter } from '../../components/mainFooter';
 import { MainHeader } from '../../components/mainHeader';
+import { makeMessageMenu } from '../../components/messageElem';
 import { UserList } from '../../components/userList';
 import { ElemConstruct } from '../../utils/elemConstruct';
 
@@ -48,7 +49,6 @@ export class MainPage {
         if (e.type === 'scroll') {
             const toEnd = Math.floor(chatBlock.scrollHeight - chatBlock.scrollTop);
             if (toEnd - chatBlock.clientHeight < 2) {
-                console.log(toEnd - chatBlock.clientHeight);
                 this.changeReadStatus(chatBlock, callback);
             }
         }
@@ -81,6 +81,22 @@ export class MainPage {
         return chatElem;
     }
 
+    private chatClickHandle(
+        e: MouseEvent,
+        changeStatus: (messageId: string) => void,
+        deleteMsg: (messageId: string) => void
+    ) {
+        const chat = e.currentTarget as HTMLElement;
+        this.changeReadStatusHandle(e, changeStatus);
+        const messageMenu = chat.querySelector('.message-menu');
+
+        if (!messageMenu) {
+            makeMessageMenu(e, deleteMsg);
+        } else {
+            messageMenu.remove();
+        }
+    }
+
     private addHandles(api: Api) {
         this.userList.userList.onclick = (e) => this.chooseUserHandle.bind(this)(e, api.getMessageHistory.bind(api));
         this.userChat.chatingForm!.onsubmit = (e) => this.sendMessageHandle.bind(this)(e, api.sendMessage.bind(api));
@@ -88,7 +104,7 @@ export class MainPage {
             this.changeReadStatusHandle.bind(this)(e, api.readStatusChange.bind(api));
         };
         this.userChat.messagesField!.onclick = (e) => {
-            this.changeReadStatusHandle.bind(this)(e, api.readStatusChange.bind(api));
+            this.chatClickHandle.bind(this)(e, api.readStatusChange.bind(api), api.deleteMessage.bind(api));
         };
     }
 

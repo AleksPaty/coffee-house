@@ -3,7 +3,7 @@ import { AuthenticationPage } from '../page/authentPage/authenticationPage';
 import { MainPage } from '../page/mainPage/mainPage';
 import { PayloadUserList, UserResponse, UserLogin, MessageData, MessageStatus } from '../types/interfaces';
 import { getDataUser, removeDataUser } from '../utils/storageUtils';
-import { changeMessageStatus } from './messageElem';
+import { changeMessageStatus, deleteMessage } from './messageElem';
 
 export class Route {
     websocket: Api;
@@ -48,6 +48,7 @@ export class Route {
     private serverListener(): void {
         this.websocket.connection.onmessage = (e) => {
             const responseData = JSON.parse(e.data as string) as UserResponse;
+            console.log(responseData);
             switch (responseData.type) {
                 case 'USER_LOGIN': {
                     const [login, password] = getDataUser()!;
@@ -118,6 +119,11 @@ export class Route {
                 case 'MSG_READ': {
                     const messageStatus = responseData.payload as { message: MessageStatus };
                     changeMessageStatus(messageStatus.message);
+                    break;
+                }
+                case 'MSG_DELETE': {
+                    const messageStatus = responseData.payload as { message: MessageStatus };
+                    deleteMessage(`message-${messageStatus.message.id}`);
                     break;
                 }
                 default:

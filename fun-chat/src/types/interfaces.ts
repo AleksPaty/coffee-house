@@ -28,7 +28,7 @@ export interface MessageData {
 
 export interface MessageStatus {
     id: string,
-    status: {isDelivered: boolean} | {isReaded: boolean}
+    status: {isDelivered: boolean} | {isReaded: boolean} | {isDeleted: boolean}
 }
 
 export interface UserResponse {

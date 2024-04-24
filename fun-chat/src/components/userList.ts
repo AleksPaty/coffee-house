@@ -91,7 +91,9 @@ export class UserList {
     }
 
     public render() {
-        this.listContainer.append(this.makeFindInput(), this.userList);
+        if (this.listContainer.children.length < 1) {
+            this.listContainer.append(this.makeFindInput(), this.userList);
+        }
         return this.listContainer;
     }
 }
