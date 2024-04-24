@@ -69,10 +69,10 @@ export class ChatField {
     }
 
     public addNewMessage(messageData: MessageData, friend: string) {
-        const separateLine = this.addRemoveSeparateLine('add')!;
+        const separateLine = document.getElementById('separate-line');
         const message = makeMessage(messageData, friend);
         if (!this.messagesField?.contains(separateLine) && messageData.from === friend) {
-            this.messagesField?.append(separateLine, message);
+            this.messagesField?.append(this.addRemoveSeparateLine('add')!, message);
         } else {
             this.messagesField?.append(message);
         }
