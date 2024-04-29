@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Angular</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/beige.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-background-gradient="linear-gradient(to bottom left, #3893E5, #fff)">
+					<img src="dist/img/angular.png" alt="angular-logo">
+					<h1>Angular</h1>
+				</section>
+				<section>
+					<h2>About Angular</h2>
+					<div class="fragment fade-up r-hstack" data-fragment-index="1">
+						<img src="dist/img/page2.1.png" alt="page2.1">
+						<p>Angular is an open-source, JavaScript framework</p>
+						<img src="dist/img/page2.2.png" alt="page2.2">
+						<p>It is written in TypeScript</p>
+					</div>
+					<div class="fragment fade-up r-hstack" data-fragment-index="2">
+						<img src="dist/img/page2.4.png" alt="page2.4">
+						<p>Primarily aimed to develop SPA</p>
+						<img src="dist/img/page2.3.png" alt="page2.3">
+						<p>Maintained by Google</p>
+					</div>
+				</section>
+				<section>
+					<section>
+						<h2>Angular incremental DOM</h2>
+						<img src="dist/img/Slide3.webp" alt="page3">
+					</section>
+					<section>
+						<h3>Incremental DOM is Tree Shakable</h3>
+						<img src="dist/img/Slide3.2.webp" alt="page3.2">
+					</section>
+					<section>
+						<h3>Incremental DOM Has Low Memory Footprint</h3>
+						<img src="dist/img/Slide3.3.webp" alt="page3.3">
+					</section>
+				</section>
+				<section>
+					<section>
+						<p>Lifecycle hooks in Angular</p>
+						<img src="dist/img/Slide4.webp" width="480" height="580" alt="page4">
+					</section>
+					<section>
+						<p>Angular Architecture</p>
+						<img src="dist/img/Slide4.2.png" alt="page4.2">
+					</section>
+					<section>
+						<h3>Attribute directives</h3>
+						<pre class="font-size=12px">Create a highlight directive that sets the background color of the host element to yellow.</pre>
+						<pre>
+							To create a directive, use the CLI command ng generate directive
+							<code>
+								ng generate directive highlight
+							</code>
+						</pre>
+						<div class="r-stack">
+							<pre class="fragment fade-out" data-fragment-index="0">
+								The CLI generates the default src/app/highlight.directive.ts as follows:
+								<code>
+								import {Directive} from '@angular/core';
+
+								@Directive({
+									standalone: true,
+									selector: '[appHighlight]',
+								})
+								export class HighlightDirective {}
+								</code>
+							</pre>
+							<pre class="fragment current-visible" data-fragment-index="0">
+								The @Directive() decorator's configuration property specifies the directive's CSS attribute selector, [appHighlight].
+								<code>
+								import {Directive, ElementRef} from '@angular/core';
+
+								@Directive({
+									standalone: true,
+									selector: '[appHighlight]',
+								})
+								export class HighlightDirective {
+									constructor(private el: ElementRef) {
+										this.el.nativeElement.style.backgroundColor = 'yellow';
+									}
+								}
+								</code>
+							</pre>
+						</div>
+					</section>
+					<section>
+						<h3>Structural directives</h3>
+						<p>Angular creates an <ng-template> element and applies the *ngIf directive onto it</p>
+						<pre>
+							<code>
+								<div *ngIf="hero" class="name">{{hero.name}}</div>
+							</code>
+							<code>
+								<ng-template [ngIf]="hero">
+									<div class="name">{{hero.name}}</div>
+								</ng-template>
+							</code>					
+						</pre>
+					</section>
+				</section>
+				<section>
+					<h3>Build your first Angular app</h3>
+					<ul>
+						<li>
+							Angular requires an active LTS or maintenance LTS version of Node and npm.
+						</li>
+						<li>
+							Install the Angular CLI which provides tooling for effective Angular development.
+							<pre><code>npm install -g @angular/cli</code></pre>
+						</li>
+						<li>
+							Creating a project start template
+							<pre><code>ng new [project_name] || ng n [project_name]</code></pre>
+							<pre>
+								You can add flags:
+								<code>--routing, --style, --directory ./</code>
+							</pre>
+						</li>
+						<li>
+							Start your application
+							<pre><code>npm start || ng serve || ng s</code></pre>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Project start template contents</h3>
+					<img src="dist/img/Slide5.png" alt="page4.2">
+				</section>
+				<section data-background-gradient="linear-gradient(to bottom left, #3893E5, #fff)">
+					This is where you'll find all about angular.
+					<span>https://angular.io/</span>
+				</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+				slideNumber: true,
+				width: 1024,
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
